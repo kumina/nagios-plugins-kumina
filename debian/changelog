@@ -1,0 +1,59 @@
+nagios-plugins-kumina (1.0-1KUMIRELEASE9) unstable; urgency=low
+
+  * Remove debugging printfs.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 13 Apr 2011 10:41:21 +0200
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE8) unstable; urgency=low
+
+  * Remove debugging printfs.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 16 Mar 2011 12:02:27 +0100
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE7) unstable; urgency=low
+
+  * Improve bounds checking.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 16 Mar 2011 11:50:46 +0100
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE6) unstable; urgency=low
+
+  * Don't follow symbolic links.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 16 Mar 2011 10:59:55 +0100
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE5) unstable; urgency=low
+
+  * Support recursive traversals.
+
+ -- Ed Schouten <ed@kumina.nl>  Fri, 11 Mar 2011 10:07:09 +0000
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE4) unstable; urgency=low
+
+  * Improve output strings.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 09 Mar 2011 14:14:45 +0000
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE3) unstable; urgency=low
+
+  * Extend error logging.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 09 Mar 2011 13:17:54 +0000
+
+nagios-plugins-kumina (1.0-1KUMIRELEASE2) unstable; urgency=low
+
+  * Improve multiple file support.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 09 Mar 2011 13:52:11 +0100
+
+nagios-plugins-kumina (1.0-1squeeze-kumina1) unstable; urgency=low
+
+  * Distribution specific release.
+
+ -- Ed Schouten <ed@kumina.nl>  Fri, 4 Mar 2011 16:25:33 +0100
+
+nagios-plugins-kumina (1.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 2 Mar 2011 15:13:42 +0100

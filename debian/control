@@ -1,0 +1,13 @@
+Source: nagios-plugins-kumina
+Section: net
+Priority: optional
+Maintainer: Ed Schouten <ed@kumina.nl>
+Build-Depends: debhelper (>= 5), build-essential, libssl-dev
+
+Package: nagios-plugins-kumina
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Nagios plugins provided by Kumina
+ The Nagios plugins by Kumina package installs additional plugins for
+ Nagios. Currently it only installs a plugin to check for SSL
+ certificate validity.
