@@ -134,7 +134,7 @@ getnum(const char *str)
 int
 main(int argc, char *argv[])
 {
-	int i, ch, ret;
+	int ch, ret;
 
 	while ((ch = getopt(argc, argv, "c:w:")) != -1) {
 		switch (ch) {

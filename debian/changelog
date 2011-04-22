@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.0-1KUMIRELEASE10) unstable; urgency=low
+
+  * Add check_loadtrend.
+
+ -- Ed Schouten <ed@kumina.nl>  Fri, 22 Apr 2011 13:52:20 +0200
+
 nagios-plugins-kumina (1.0-1KUMIRELEASE9) unstable; urgency=low
 
   * Remove debugging printfs.
