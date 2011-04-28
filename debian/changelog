@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.1-1KUMIRELEASE2) unstable; urgency=low
+
+  * Get rid of smaller-than and greater-than in output.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 27 Apr 2011 09:48:04 +0200
+
 nagios-plugins-kumina (1.1-1KUMIRELEASE1) unstable; urgency=low
 
   * Bump version; it seems we already deployed a 1.1 here and there?

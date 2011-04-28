@@ -35,7 +35,8 @@ testratio(double load1, double load2, double ratio,
 
 	if (load1 >= ratio * load2) {
 		printf(
-"%s - load1 / load%d = %.2lf / %.2lf = %.2lf >= %.2lf\n",
+		    "%s - load1 / load%d = %.2lf / %.2lf = %.2lf, "
+		    "which is greater than or equal to  %.2lf\n",
 		    severity, loadtime, load1, load2, load1 / load2, ratio);
 		exit(code);
 	}
@@ -84,7 +85,7 @@ main(int argc, char *argv[])
 	}
 
 	if (ladv[0] < minload * ncpus) {
-		printf("OK - load1 = %.2lf < %.2lf\n",
+		printf("OK - load1 = %.2lf, which is less than %.2lf\n",
 		    ladv[0], minload * ncpus);
 		return (0);
 	}
