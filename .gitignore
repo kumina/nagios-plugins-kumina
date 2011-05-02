@@ -1,3 +1,6 @@
+build
 check_loadtrend
 check_sslcert
+debian/files
+debian/nagios-plugins-kumina*
 *.o

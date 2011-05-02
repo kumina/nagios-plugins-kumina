@@ -22,6 +22,8 @@ install: build
 		${NPDIR}/usr/share/doc/nagios-plugins-kumina
 	install -m 755 check_loadtrend \
 		${NPDIR}/usr/lib/nagios/plugins
+	install -m 755 check_pacemaker_config.sh \
+		${NPDIR}/usr/lib/nagios/plugins/check_pacemaker_config
 	install -m 755 check_sslcert \
 		${NPDIR}/usr/lib/nagios/plugins
 	dh_installchangelogs

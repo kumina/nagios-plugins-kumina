@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.1-1KUMIRELEASE3) unstable; urgency=low
+
+  * Add a script to check Pacemaker configuration.
+
+ -- Ed Schouten <ed@kumina.nl>  Mon, 2 May 2011 09:50:53 +0200
+
 nagios-plugins-kumina (1.1-1KUMIRELEASE2) unstable; urgency=low
 
   * Get rid of smaller-than and greater-than in output.
