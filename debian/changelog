@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.2-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add a script to monitor Java heap usage.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 25 May 2011 14:41:16 +0200
+
 nagios-plugins-kumina (1.1-1KUMIRELEASE3) unstable; urgency=low
 
   * Add a script to check Pacemaker configuration.
