@@ -2,11 +2,19 @@
 
 if test $# -ne 3
 then
-	echo "CRITICAL - usage: $0 pathname critpercent warnpercent"
+	echo "CRITICAL - usage: $0 port critpercent warnpercent"
 	exit 2
 fi
 
-$1 | exec awk "
+# XXX: Backward compatibility!
+if test -e $1
+then
+	$1
+else
+	java -cp /usr/lib/jmxquery.jar org.munin.JMXQuery \
+		--url=service:jmx:rmi:///jndi/rmi://localhost:$1/jmxrmi \
+		--conf=/usr/share/doc/jmxquery/examples/java/java_process_memory.conf
+fi | exec awk "
 BEGIN {
 	MAX=0
 	USED=0

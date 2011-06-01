@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.3-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add support for directly calling into jmxquery.
+
+ -- Ed Schouten <ed@kumina.nl>  Jun, 1 Jun 2011 15:23:29 +0200
+
 nagios-plugins-kumina (1.2-1KUMIRELEASE1) unstable; urgency=low
 
   * Add a script to monitor Java heap usage.
