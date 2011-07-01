@@ -30,14 +30,15 @@ getdouble(const char *str)
 
 static void
 testratio(double load1, double load2, double ratio,
-    const char *severity, int code, int loadtime)
+    const char *severity, int code, int loadtime1, int loadtime2)
 {
 
 	if (load1 >= ratio * load2) {
 		printf(
-		    "%s - load1 / load%d = %.2lf / %.2lf = %.2lf, "
+		    "%s - load%d / load%d = %.2lf / %.2lf = %.2lf, "
 		    "which is greater than or equal to  %.2lf\n",
-		    severity, loadtime, load1, load2, load1 / load2, ratio);
+		    severity, loadtime1, loadtime2, load1, load2,
+		    load1 / load2, ratio);
 		exit(code);
 	}
 }
@@ -90,14 +91,14 @@ main(int argc, char *argv[])
 		return (0);
 	}
 
-	testratio(ladv[0], ladv[1], critratio, "CRITICAL", 2, 5);
-	testratio(ladv[0], ladv[2], critratio, "CRITICAL", 2, 15);
-	testratio(ladv[0], ladv[1], warnratio, "WARNING", 1, 5);
-	testratio(ladv[0], ladv[2], warnratio, "WARNING", 1, 15);
+	testratio(ladv[0], ladv[1], critratio, "CRITICAL", 2, 1, 5);
+	testratio(ladv[1], ladv[2], critratio, "CRITICAL", 2, 5, 15);
+	testratio(ladv[0], ladv[1], warnratio, "WARNING", 1, 1, 5);
+	testratio(ladv[1], ladv[2], warnratio, "WARNING", 1, 5, 15);
 
 	printf("OK - load1 / load5 = %.2lf / %.2lf = %.2lf,"
-	           " load1 / load15 = %.2lf / %.2lf = %.2lf\n",
+	           " load5 / load15 = %.2lf / %.2lf = %.2lf\n",
 	    ladv[0], ladv[1], ladv[0] / ladv[1],
-	    ladv[0], ladv[2], ladv[0] / ladv[2]);
+	    ladv[1], ladv[2], ladv[1] / ladv[2]);
 	return (0);
 }
