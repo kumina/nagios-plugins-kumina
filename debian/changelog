@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.4-1KUMIRELEASE2) unstable; urgency=low
+
+  * Remove load1/load5 test completely.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 04 Jul 2011 10:48:59 +0000
+
 nagios-plugins-kumina (1.4-1KUMIRELEASE1) unstable; urgency=low
 
   * Let check_loadtrend use load5 / load15 instead.
