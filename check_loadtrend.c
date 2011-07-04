@@ -91,14 +91,10 @@ main(int argc, char *argv[])
 		return (0);
 	}
 
-	testratio(ladv[0], ladv[1], critratio, "CRITICAL", 2, 1, 5);
 	testratio(ladv[1], ladv[2], critratio, "CRITICAL", 2, 5, 15);
-	testratio(ladv[0], ladv[1], warnratio, "WARNING", 1, 1, 5);
 	testratio(ladv[1], ladv[2], warnratio, "WARNING", 1, 5, 15);
 
-	printf("OK - load1 / load5 = %.2lf / %.2lf = %.2lf,"
-	           " load5 / load15 = %.2lf / %.2lf = %.2lf\n",
-	    ladv[0], ladv[1], ladv[0] / ladv[1],
+	printf("OK -  load5 / load15 = %.2lf / %.2lf = %.2lf\n",
 	    ladv[1], ladv[2], ladv[1] / ladv[2]);
 	return (0);
 }
