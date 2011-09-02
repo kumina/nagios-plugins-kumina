@@ -1,3 +1,22 @@
+nagios-plugins-kumina (1.6-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add the following checks:
+   *check_3ware.sh
+   *check_adaptec.py
+   *check_asterisk.sh
+   *check_cassandra.sh
+   *check_cpu.sh
+   *check_dnszone.py
+   *check_drbd.pl
+   *check_heartbeat.pl
+   *check_mbean_value.sh
+   *check_memory.py
+   *check_open_files.pl
+   *check_proc_status.sh
+   *check_puppet.rb
+
+ -- Pieter Lexis <pieter@kumina.nl>  Fri, 2 Sep 2011 10:22:15 +0200
+
 nagios-plugins-kumina (1.5-1KUMIRELEASE1) unstable; urgency=low
 
   * Add check_rabbitmqctl.
