@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.7-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add check_file.py
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Wed, 7 Sep 2011 15:41:44 +0200
+
 nagios-plugins-kumina (1.6-1KUMIRELEASE1) unstable; urgency=low
 
   * Add the following checks:
