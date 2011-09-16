@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.8-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add check_nullmailer.py
+
+ -- Pieter Lexis <pieter@kumina.nl>  Fri, 16 Sep 2011 10:50:20 +0200
+
 nagios-plugins-kumina (1.7-1KUMIRELEASE1) unstable; urgency=low
 
   * Add check_file.py
