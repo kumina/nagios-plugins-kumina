@@ -48,6 +48,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_open_files
 	install -m 755 check_pacemaker_config.sh \
 		${NPDIR}/usr/lib/nagios/plugins/check_pacemaker_config
+	install -m 755 check_passenger_queue.sh \
+		${NPDIR}/usr/lib/nagios/plugins/check_passenger_queue
 	install -m 755 check_proc_status.sh \
 		${NPDIR}/usr/lib/nagios/plugins/check_proc_status
 	install -m 755 check_puppet.rb \

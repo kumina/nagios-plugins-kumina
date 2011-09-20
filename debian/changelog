@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.9-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add check_passenger_queue.sh
+
+ -- Pieter Lexis <pieter@kumina.nl>  Tue, 20 Sep 2011 13:35:48 +0200
+
 nagios-plugins-kumina (1.8-1KUMIRELEASE1) unstable; urgency=low
 
   * Add check_nullmailer.py
