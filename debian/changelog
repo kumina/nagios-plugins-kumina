@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.10-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add a verifying state to check_3ware
+
+ -- Pieter Lexis <pieter@kumina.nl>  Fri, 14 Oct 2011 09:59:45 +0200
+
 nagios-plugins-kumina (1.9-1KUMIRELEASE1) unstable; urgency=low
 
   * Add check_passenger_queue.sh

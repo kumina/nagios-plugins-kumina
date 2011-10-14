@@ -72,6 +72,11 @@ for i in $CONTROLLERS; do
 				MSG="$MSG $STATUS Reason: $DRIVE -"
 				PREEXITCODE=2
 				;;
+			VERIFYING)
+				CHECKUNIT=`$TWCLI info $i unitstatus | grep -E "${UNIT[$COUNT]}" | awk '{print $1,$3,$5}'`
+				OKSTATUS="$OKSTATUS /$i/$CHECKUNIT% -"
+				PREEXITCODE=0
+				;;
 			*)
 				CHECKUNIT=`$TWCLI info $i unitstatus | grep -E "${UNIT[$COUNT]}"`
 				STATUS="/$i/$CHECKUNIT"
