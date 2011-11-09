@@ -9,6 +9,6 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Description: Nagios plugins provided by Kumina
  The Nagios plugins by Kumina package installs additional plugins for
- Nagios. Currently it installs a plugin to check for SSL certificate
- validity, a script to validate Pacemaker configuration, a plugin to
- monitor Java memory usage and a plugin to measure trends in CPU load.
+ Nagios. It installs a plugin to check for SSL certificate validity,
+ a script to validate Pacemaker configuration, a plugin to  monitor
+ Java memory usage and a lot more!
