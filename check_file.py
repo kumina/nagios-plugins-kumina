@@ -26,6 +26,7 @@ msg = ""
 parser = argparse.ArgumentParser(description="This script tests if the first line of a specified file contains a specified content. This script is meant to be invoked by nagios/icinga.")
 parser.add_argument("-f", "--filename", action="store", required=True, help="The file (with path) to check.")
 parser.add_argument("-c", "--content", action="store", help="The content that is expected to be on the first line of the file.")
+parser.add_argument("-n", "--negate", action="store_true", help="Specifies that the file should not exist, the first line is returned if it does exist.")
 
 def quit(state):
     print msg
@@ -49,12 +50,19 @@ if path.isfile(args.filename):
         addToMsg("CRITICAL: %s can't be read." % args.filename)
         quit(exit_crit)
 else:
-    addToMsg("CRITICAL: %s doesn't exist." % args.filename)
-    quit(exit_crit)
+    if args.negate:
+        addToMsg("OK: %s doesn't exist." % args.filename)
+        quit(exit_ok)
+    else:
+        addToMsg("CRITICAL: %s doesn't exist." % args.filename)
+        quit(exit_crit)
 fileContent = f.readline().strip()
 f.close
 
-if fileContent == args.content:
+if args.negate:
+    addToMsg("CRITICAL: Reason: %s" % fileContent)
+    quit(exit_crit)
+elif fileContent == args.content:
     addToMsg("OK: content is \"%s\"." % fileContent)
     quit(exit_ok)
 else:
