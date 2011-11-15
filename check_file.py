@@ -60,7 +60,7 @@ fileContent = f.readline().strip()
 f.close
 
 if args.negate:
-    addToMsg("CRITICAL: Reason: %s" % fileContent)
+    addToMsg("CRITICAL: %s" % fileContent)
     quit(exit_crit)
 elif fileContent == args.content:
     addToMsg("OK: content is \"%s\"." % fileContent)
