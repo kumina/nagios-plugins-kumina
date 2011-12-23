@@ -1,3 +1,9 @@
+nagios-plugins-kumina (1.14-1KUMIRELEASE1) unstable; urgency=low
+
+  * check_cassandra: Set port option
+
+ -- Pieter Lexis <pieter@kumina.nl>  Fri, 23 Dec 2011 09:44:30 +0100
+
 nagios-plugins-kumina (1.13-1KUMIRELEASE1) unstable; urgency=low
 
   * check_memory: actually install it

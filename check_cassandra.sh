@@ -2,7 +2,7 @@
 
 IPs="`ip add | awk '/inet/ { sub(/\/.*/, "", $2);  print "^" $2 " "}'`"
 msg="CASSANDRA"
-cassandra_status="$(nodetool ring -h $(hostname) | grep "${IPs}")"
+cassandra_status="$(nodetool ring -h $(hostname) -p 8080 | grep "${IPs}")"
 
 case `echo $cassandra_status | awk '{print $3}'` in
 	"Normal")
