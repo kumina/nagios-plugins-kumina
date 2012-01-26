@@ -40,6 +40,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_heartbeat
 	install -m 755 check_memory.py \
 		${NPDIR}/usr/lib/nagios/plugins/check_memory
+	install -m 755 check_icinga_config.sh \
+		${NPDIR}/usr/lib/nagios/plugins/check_icinga_config
 	install -m 755 check_javaheapusage.sh \
 		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage
 	install -m 755 check_nullmailer.py \
