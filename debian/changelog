@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.1-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add check_ferm_config.
+
+ -- Ed Schouten <ed@kumina.nl>  Thu, 26 Jan 2012 15:26:57 +0100
+
 nagios-plugins-kumina (2.0-1KUMIRELEASE1) unstable; urgency=low
 
   * Add check_icinga_config.

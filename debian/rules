@@ -34,6 +34,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_dnszone
 	install -m 755 check_drbd.pl \
 		${NPDIR}/usr/lib/nagios/plugins/check_drbd
+	install -m 755 check_ferm_config.sh \
+		${NPDIR}/usr/lib/nagios/plugins/check_ferm_config
 	install -m 755 check_file.py \
 		${NPDIR}/usr/lib/nagios/plugins/check_file
 	install -m 755 check_heartbeat.pl \
