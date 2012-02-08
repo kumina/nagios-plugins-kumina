@@ -46,6 +46,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_icinga_config
 	install -m 755 check_javaheapusage.sh \
 		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage
+	install -m 755 check_mysql_connlimit.sh \
+		${NPDIR}/usr/lib/nagios/plugins/check_mysql_connlimit
 	install -m 755 check_nullmailer.py \
 		${NPDIR}/usr/lib/nagios/plugins/check_nullmailer
 	install -m 755 check_loadtrend \

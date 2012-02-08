@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.3-1KUMIRELEASE1) unstable; urgency=low
+
+  * Add check_mysql_connlimit.
+
+ -- Ed Schouten <ed@kumina.nl>  Wed, 08 Feb 2012 11:59:00 +0100
+
 nagios-plugins-kumina (2.2-1KUMIRELEASE1) unstable; urgency=low
 
   * Allow filename to be passed to check_icinga_config.
