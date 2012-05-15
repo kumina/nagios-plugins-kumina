@@ -38,6 +38,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_ferm_config
 	install -m 755 check_file.py \
 		${NPDIR}/usr/lib/nagios/plugins/check_file
+	install -m 755 check_haproxy_errors.py \
+		${NPDIR}/usr/lib/nagios/plugins/check_haproxy_errors
 	install -m 755 check_heartbeat.pl \
 		${NPDIR}/usr/lib/nagios/plugins/check_heartbeat
 	install -m 755 check_memory.py \
