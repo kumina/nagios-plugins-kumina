@@ -72,6 +72,10 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_rabbitmqctl
 	install -m 755 check_sslcert \
 		${NPDIR}/usr/lib/nagios/plugins
+	install -m 755 check_tomcat.pl \
+		${NPDIR}/usr/lib/nagios/plugins/check_tomcat
+	install -m 755 check_tomcat_application.sh \
+		${NPDIR}/usr/lib/nagios/plugins/check_tomcat_application
 	dh_installchangelogs
 	dh_compress
 

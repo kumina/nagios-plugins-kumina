@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.6-KUMIRELEASE1) unstable; urgency=low
+
+  * Add check_tomcat and check_tomcat_application
+
+ -- Pieter Lexis <pieter@kumina.nl>  Wed, 11 Jul 2012 12:30:23 +0200
+
 nagios-plugins-kumina (2.5-KUMIRELEASE1) unstable; urgency=low
 
   * Add two javaheapusage checks:

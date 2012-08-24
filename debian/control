@@ -1,7 +1,8 @@
 Source: nagios-plugins-kumina
 Section: net
 Priority: optional
-Maintainer: Ed Schouten <ed@kumina.nl>
+Maintainer: Pieter Lexis <pieter@kumina.nl>
+Standards-Version: 3.8.4
 Build-Depends: debhelper (>= 5), build-essential, libssl-dev
 
 Package: nagios-plugins-kumina
