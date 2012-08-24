@@ -1,3 +1,11 @@
+nagios-plugins-kumina (2.5-KUMIRELEASE1) unstable; urgency=low
+
+  * Add two javaheapusage checks:
+   * One for usage with authentication
+   * One that wraps the former for an autostart file
+
+ -- Pieter Lexis <pieter@kumina.nl>  Fri, 01 Jun 2012 12:56:08 +0200
+
 nagios-plugins-kumina (2.4-KUMIRELEASE1) unstable; urgency=low
 
   * Add check_haproxy_errors
