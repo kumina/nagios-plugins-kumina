@@ -52,6 +52,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage_auth
 	install -m 755 check_javaheapusage_auth_autostart.sh \
 		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage_auth_autostart
+	install -m 755 check_megaraid_sas.pl \
+		${NPDIR}/usr/lib/nagios/plugins/check_megaraid_sas
 	install -m 755 check_mysql_connlimit.sh \
 		${NPDIR}/usr/lib/nagios/plugins/check_mysql_connlimit
 	install -m 755 check_nullmailer.py \
