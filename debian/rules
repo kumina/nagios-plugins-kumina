@@ -20,64 +20,26 @@ install: build
 		${NPDIR}/usr/share/doc/nagios-plugins-kumina
 	install -m 644 debian/copyright \
 		${NPDIR}/usr/share/doc/nagios-plugins-kumina
-	install -m 755 check_3ware.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_3ware
-	install -m 755 check_adaptec.py \
-		${NPDIR}/usr/lib/nagios/plugins/check_adaptec
-	install -m 755 check_asterisk.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_asterisk
-	install -m 755 check_cassandra.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_cassandra
-	install -m 755 check_cpu.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_cpu
-	install -m 755 check_dnszone.py \
-		${NPDIR}/usr/lib/nagios/plugins/check_dnszone
-	install -m 755 check_drbd.pl \
-		${NPDIR}/usr/lib/nagios/plugins/check_drbd
-	install -m 755 check_ferm_config.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_ferm_config
-	install -m 755 check_file.py \
-		${NPDIR}/usr/lib/nagios/plugins/check_file
-	install -m 755 check_haproxy_errors.py \
-		${NPDIR}/usr/lib/nagios/plugins/check_haproxy_errors
-	install -m 755 check_heartbeat.pl \
-		${NPDIR}/usr/lib/nagios/plugins/check_heartbeat
-	install -m 755 check_memory.py \
-		${NPDIR}/usr/lib/nagios/plugins/check_memory
-	install -m 755 check_icinga_config.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_icinga_config
-	install -m 755 check_javaheapusage.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage
-	install -m 755 check_javaheapusage_auth.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage_auth
-	install -m 755 check_javaheapusage_auth_autostart.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_javaheapusage_auth_autostart
-	install -m 755 check_megaraid_sas.pl \
-		${NPDIR}/usr/lib/nagios/plugins/check_megaraid_sas
-	install -m 755 check_mysql_connlimit.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_mysql_connlimit
-	install -m 755 check_nullmailer.py \
-		${NPDIR}/usr/lib/nagios/plugins/check_nullmailer
-	install -m 755 check_loadtrend \
-		${NPDIR}/usr/lib/nagios/plugins
-	install -m 755 check_open_files.pl \
-		${NPDIR}/usr/lib/nagios/plugins/check_open_files
-	install -m 755 check_pacemaker_config.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_pacemaker_config
-	install -m 755 check_passenger_queue.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_passenger_queue
-	install -m 755 check_proc_status.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_proc_status
-	install -m 755 check_puppet.rb \
-		${NPDIR}/usr/lib/nagios/plugins/check_puppet
-	install -m 755 check_rabbitmqctl.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_rabbitmqctl
-	install -m 755 check_sslcert \
-		${NPDIR}/usr/lib/nagios/plugins
-	install -m 755 check_tomcat.pl \
-		${NPDIR}/usr/lib/nagios/plugins/check_tomcat
-	install -m 755 check_tomcat_application.sh \
-		${NPDIR}/usr/lib/nagios/plugins/check_tomcat_application
+	install -m 775 check_sslcert \
+		${NPDIR}/usr/lib/nagios/plugins/check_sslcert
+	install -m 775 check_loadtrend \
+		${NPDIR}/usr/lib/nagios/plugins/check_loadtrend
+	for file in check_*.sh; do \
+		tmp="`basename $$file .sh`"; \
+		install -m 775 $$file ${NPDIR}/usr/lib/nagios/plugins/$$tmp``; \
+	done
+	for file in check_*.pl; do \
+		tmp="`basename $$file .pl`"; \
+		install -m 775 $$file ${NPDIR}/usr/lib/nagios/plugins/$$tmp``; \
+	done
+	for file in check_*.py; do \
+		tmp="`basename $$file .py`"; \
+		install -m 775 $$file ${NPDIR}/usr/lib/nagios/plugins/$$tmp``; \
+	done
+	for file in check_*.rb; do \
+		tmp="`basename $$file .rb`"; \
+		install -m 775 $$file ${NPDIR}/usr/lib/nagios/plugins/$$tmp``; \
+	done
 	dh_installchangelogs
 	dh_compress
 
