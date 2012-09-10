@@ -25,12 +25,12 @@ def getNumVols():
     child.sendline('21')
     child.expect ('RAID actions menu, select an option:  \[[^-]+-[^-]+ or e/p/w or 0 to quit\]')
     child.sendline('1')
-    child.expect ('(\d+) volumes are active, (\d+) physical disks are active')
-    numVols,numPhys = child.match.groups()
+    child.expect ('(\d+) volume(s are| is) active, (\d+) physical disks are active')
+    numVols,ignore,numPhys = child.match.groups()
     child.kill
     return int(numVols),int(numPhys)
 
-def getVolStatus(volID):
+def getVolStatusMulti(volID):
     child = pexpect.spawn (binary,logfile=logfile)
     # Get to the RAID menu to get the volume status
     child.expect('Select a device:  \[[^-]+-[^-]+ or 0 to quit\]')
@@ -46,6 +46,20 @@ def getVolStatus(volID):
     child.kill
     return [state,enablestate]
 
+def getVolStatusSingle():
+    child = pexpect.spawn (binary,logfile=logfile)
+    # Get to the RAID menu to get the volume status
+    child.expect('Select a device:  \[[^-]+-[^-]+ or 0 to quit\]')
+    child.sendline('1')
+    child.expect ('Main menu, select an option:  \[[^-]+-[^-]+ or e/p/w or 0 to quit\]')
+    child.sendline('21')
+    child.expect ('RAID actions menu, select an option:  \[[^-]+-[^-]+ or e/p/w or 0 to quit\]')
+    child.sendline('3')
+    child.expect ('Volume 0 State:  ([^,]+), ([^\W]+)')
+    state,enablestate = child.match.groups()
+    child.kill
+    return [state,enablestate]
+
 # Set some variables we can re-assign when checking the disk states
 enabledVols = 0
 pre_exit = EXIT_OK
@@ -54,16 +68,24 @@ msg = ''
 
 numVols,numPhys = getNumVols()
 
-for x in range(numVols):
-    volState = getVolStatus(x)
-    if volState[1] != 'enabled':
-        # The volume is not enabled, so we do not care about the state.
-        continue
-    enabledVols += 1
-    msg = msg + ' Volume %d: %s.' % (x,volState[0])
+if numVols == 1:
+    enabledVols = 1
+    volState = getVolStatusSingle()
+    msg = msg + ' Volume 0: %s.' % (volState[0])
     if volState[0] != 'optimal':
         pre_exit = EXIT_CRIT
         exit_msg = 'CRITICAL:'
+else:
+    for x in range(numVols):
+        volState = getVolStatusMulti(x)
+        if volState[1] != 'enabled':
+            # The volume is not enabled, so we do not care about the state.
+            continue
+        enabledVols += 1
+        msg = msg + ' Volume %d: %s.' % (x,volState[0])
+        if volState[0] != 'optimal':
+            pre_exit = EXIT_CRIT
+            exit_msg = 'CRITICAL:'
 
 print exit_msg + ' %d Volumes configured, %d Volumes enabled. %d Physical Disks used.' % (numVols, enabledVols, numPhys) + msg
 sys.exit(pre_exit)
