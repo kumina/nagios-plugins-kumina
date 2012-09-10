@@ -14,8 +14,7 @@ EXIT_UNKNOWN = 3
 # Set logfile to sys.stdout if you want to see the output of the child program
 logfile = None
 # The path to the lsiutil binary
-#binary = '/usr/sbin/lsiutil'
-binary = './lsiutil.x86_64'
+binary = '/usr/sbin/lsiutil'
 
 def getNumVols():
     child = pexpect.spawn (binary,logfile=logfile)

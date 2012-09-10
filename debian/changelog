@@ -1,3 +1,10 @@
+nagios-plugins-kumina (2.8-KUMIRELEASE2) unstable; urgency=low
+
+  * check_lsimpt:
+    * Change path to lsiutil binary.
+
+ -- Pieter Lexis <pieter@kumina.nl>  Mon, 10 Sep 2012 12:00:32 +0200
+
 nagios-plugins-kumina (2.8-KUMIRELEASE1) unstable; urgency=low
 
   * Added check_lsimpt.
