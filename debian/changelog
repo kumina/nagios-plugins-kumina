@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.10-KUMIRELEASE1) unstable; urgency=low
+
+  * Addded check_mount.
+
+ -- Thomas Ronner <thomas@kumina.nl>  Fri, 21 Sep 2012 12:31:28 +0200
+
 nagios-plugins-kumina (2.9-KUMIRELEASE1) unstable; urgency=low
 
   * check_lsimpt:
