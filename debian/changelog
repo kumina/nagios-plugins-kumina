@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.11-KUMIRELEASE1) unstable; urgency=low
+
+  * Addded check_doublemount.
+
+ -- Thomas Ronner <thomas@kumina.nl>  Wed, 10 Oct 2012 15:08:28 +0200
+
 nagios-plugins-kumina (2.10-KUMIRELEASE1) unstable; urgency=low
 
   * Addded check_mount.
