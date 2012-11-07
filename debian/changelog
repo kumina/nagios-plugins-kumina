@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.13-KUMIRELEASE2) unstable; urgency=low
+
+  * Added check_http_port_url_autostart
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Wed, 07 Nov 2012 15:45:16 +0100
+
 nagios-plugins-kumina (2.12-KUMIRELEASE2) unstable; urgency=low
 
   * Added check_imap_login
