@@ -15,13 +15,21 @@ fi
 # Check if we need to use offsite-backup or local-backup
 if [ -f /usr/bin/offsite-backup ]; then
 	LAST_TIMESTAMP=`/usr/bin/offsite-backup list | /usr/bin/tail -n 1 | /usr/bin/cut -d' ' -f3- | /usr/bin/xargs -i /bin/date -d '{}' +%s`
+	if [ $? -gt 0 ]; then
+		echo "BACKUP UNKNOWN: List command produces errors"
+		exit 4
+	fi
 	. /etc/backup/offsite-backup.conf
 elif [ -f /usr/bin/local-backup ]; then
 	LAST_TIMESTAMP=`/usr/bin/local-backup list | /usr/bin/tail -n 1 | /usr/bin/cut -d' ' -f3- | /usr/bin/xargs -i /bin/date -d '{}' +%s`
+	if [ $? -gt 0 ]; then
+		echo "BACKUP UNKNOWN: List command produces errors"
+		exit 4
+	fi
 	. /etc/backup/local-backup.conf
 else
-	echo "No known backup solution installed."
-	exit 1
+	echo "BACKUP UNKNOWN: No known backup solution installed."
+	exit 4
 fi
 
 # Get current timestamp and calculate the difference
