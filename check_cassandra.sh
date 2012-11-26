@@ -2,7 +2,7 @@
 
 IPs="`ip add | awk '/inet/ { sub(/\/.*/, "", $2);  print "^" $2 " "}'`"
 msg="CASSANDRA"
-cassandra_status="$(/usr/bin/nodetool ring -h $(hostname) -p 8080 | grep "${IPs}")"
+cassandra_status="$(/usr/bin/nodetool ring -h $(hostname) -p 7199 | grep "${IPs}")"
 
 cassandra_major_version=`/usr/bin/dpkg -l cassandra | /usr/bin/awk '{ if ($1 ~/^ii/) { print $3 } }' | /usr/bin/cut -c 1-1`
 
