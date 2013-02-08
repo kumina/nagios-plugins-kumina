@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.21-KUMIRELEASE0) unstable; urgency=low
+
+  * Added check_snapshots.py
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Fri, 08 Feb 2013 13:24:29 +0100
+
 nagios-plugins-kumina (2.20-KUMIRELEASE0) unstable; urgency=low
 
   * Added check_pacemaker_standby.sh
