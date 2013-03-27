@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.22-KUMIRELEASE0) unstable; urgency=low
+
+  * Added check_rbl.py
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 27 Mar 2013 22:12:55 +0100
+
 nagios-plugins-kumina (2.21-KUMIRELEASE0) unstable; urgency=low
 
   * Added check_snapshots.py
