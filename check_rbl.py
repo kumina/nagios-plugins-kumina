@@ -107,8 +107,6 @@ serverlist = [
 "spamtrap.drbl.drand.net",
 "t3direct.dnsbl.net.au",
 "tor.ahbl.org",
-"tor.dnsbl.sectoor.de",
-"torserver.tor.dnsbl.sectoor.de",
 "ubl.lashback.com",
 "ubl.unsubscore.com",
 "virbl.bit.nl",

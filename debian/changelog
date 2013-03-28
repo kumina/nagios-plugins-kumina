@@ -1,3 +1,10 @@
+nagios-plugins-kumina (2.22-KUMIRELEASE1) unstable; urgency=low
+
+  *  Remove the spamlists from sectoor.de since there doesn't seem
+     to be a way to post a removal request.
+
+ -- Tim Stoop <tim@kumina.nl>  Thu, 28 Mar 2013 14:02:13 +0100
+
 nagios-plugins-kumina (2.22-KUMIRELEASE0) unstable; urgency=low
 
   * Added check_rbl.py
