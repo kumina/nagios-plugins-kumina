@@ -113,7 +113,8 @@ serverlist = [
 "virus.rbl.jp",
 "virus.rbl.msrbl.net",
 "wormrbl.imp.ch",
-"zen.spamhaus.org",
+"sbl.spamhaus.org",
+"xbl.spamhaus.org",
 ]
 
 ####

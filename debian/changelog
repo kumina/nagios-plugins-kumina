@@ -1,3 +1,12 @@
+nagios-plugins-kumina (2.22-KUMIRELEASE2) unstable; urgency=low
+
+  * Remove zen.spamhaus.org and replace with separate sbl and xbl
+    entries. The pbl and dbl are not interesting to us, since those
+    are not really blacklists that we want to be notified of, they
+    are just advisories.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 02 Apr 2013 11:08:50 +0200
+
 nagios-plugins-kumina (2.22-KUMIRELEASE1) unstable; urgency=low
 
   *  Remove the spamlists from sectoor.de since there doesn't seem
