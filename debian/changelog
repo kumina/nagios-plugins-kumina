@@ -1,3 +1,11 @@
+nagios-plugins-kumina (2.23-KUMIRELEASE0) unstable; urgency=low
+
+  * Add check_apache_loaded_modules, which implements the check
+    described here:
+    http://blog.sucuri.net/2013/02/web-server-compromise-debian-distro-identify-and-remove-corrupt-apache-modules.html
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 02 Apr 2013 22:46:59 +0200
+
 nagios-plugins-kumina (2.22-KUMIRELEASE2) unstable; urgency=low
 
   * Remove zen.spamhaus.org and replace with separate sbl and xbl
