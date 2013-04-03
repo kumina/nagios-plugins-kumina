@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.23-KUMIRELEASE1) unstable; urgency=low
+
+  * Packaged the wrong version of the script... d0h!
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 03 Apr 2013 14:41:37 +0200
+
 nagios-plugins-kumina (2.23-KUMIRELEASE0) unstable; urgency=low
 
   * Add check_apache_loaded_modules, which implements the check
