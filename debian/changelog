@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.24-KUMIRELEASE0) unstable; urgency=low
+
+  * Added check_dnssec_validation.py
+
+ -- Pieter Lexis <pieter@kumina.nl>  Thu, 04 Apr 2013 15:39:22 +0200
+
 nagios-plugins-kumina (2.23-KUMIRELEASE1) unstable; urgency=low
 
   * Packaged the wrong version of the script... d0h!
