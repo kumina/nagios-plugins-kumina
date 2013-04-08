@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.24-KUMIRELEASE3) unstable; urgency=low
+
+  * Fix check_haproxy_errors script and make it more readable.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 08 Apr 2013 11:11:28 +0200
+
 nagios-plugins-kumina (2.24-KUMIRELEASE2) unstable; urgency=low
 
   * Change path of the root key
