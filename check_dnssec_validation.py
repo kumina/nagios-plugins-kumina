@@ -17,8 +17,9 @@ exit_crit = 2
 exit_err = 3
 msg = ""
 
-parser = argparse.ArgumentParser(description="This script tests the zone for validation failures. This script is meant to be invoked by nagios/icinga.")
-parser.add_argument("zone", action="store", help="The zone to be checked")
+parser = argparse.ArgumentParser(description="This script tests the zone for validation failures by looking up the SOA record. This script is meant to be invoked by nagios/icinga.")
+parser.add_argument("-H", action="store", dest='ignore', help="An option to work around a quirk in the kumina Icinga setup, ignored")
+parser.add_argument("zone", action="store", metavar='ZONE', help="The zone to be checked")
 
 def quit(state):
     print msg
