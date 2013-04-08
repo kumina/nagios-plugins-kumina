@@ -23,6 +23,7 @@ exit_crit = 2
 exit_err = 3
 msg = ""
 datafile = '/var/cache/icinga_haproxy_data'
+datapoints = []
 
 parser = argparse.ArgumentParser(description="This script tests if a Haproxy backend gave more errors than a specified threshold. This script is meant to be invoked by nagios/icinga.")
 parser.add_argument("-i", "--interval", action="store", type=int, default=300, help="The time interval in seconds during which the errors occur (default = %(default)s)")
@@ -44,7 +45,6 @@ def addToMsg(newString):
 class Hapr_data(object):
     def __init__(self, data):
         self.time = datetime.datetime.now()
-
         parsed_data = {}
         data = data.split('\n')
         firstrow = True
@@ -94,7 +94,6 @@ try:
 except:
     addToMsg('UNKNOWN: error opening datafile ' + datafile)
     quit(exit_err)
-datapoints = []
 while True:
     try:
         datapoints.append(cPickle.load(f))
@@ -107,15 +106,25 @@ interval = datetime.timedelta(seconds = args.interval)
 points = datapoints[:]
 datapoint_compare = None
 for i in range(len(points)):
-    delta = datapoint_current.time - interval - points[i].time
+    # Get the difference between the current timestamp and the point from the cache
+    delta = datapoint_current.time - points[i].time
+    # If there are more points available...
     if i + 1 in range(len(points)):
-        next_delta = datapoint_current.time - interval - points[i + 1].time
-        if next_delta < delta and next_delta > datetime.timedelta():
+        # Get the difference between the current timestamp and the next point from the cache
+        next_delta = datapoint_current.time - points[i + 1].time
+        # If the next difference is smaller than the current one and the next difference is larger than the required interval...
+        # Also check if the next delta is larger than zero
+        if next_delta < delta and next_delta > interval:
+            # Remove the current point, we don't need it anymore
             datapoints.remove(points[i])
+            print "Remove "+str(points[i].time)
+            # Continue to the next point
             continue
-    if delta > datetime.timedelta():
+    # We get here when there are no additional points that's closer to the interval but not shorter than it.
+    if delta > interval:
+        # We know what to compare
         datapoint_compare = points[i]
-    break
+        break
 
 # Write the new list of datapoints to the file
 try:
@@ -144,10 +153,11 @@ errs_for_crit = args.crit_amount / float(args.interval)
 for name in data_current.keys():
     if name not in data_compare.keys():
         continue
+    # Get the difference in error counters
     value_delta = data_current[name] - data_compare[name]
-    td = time_current - time_compare
-    time_delta = (td.microseconds + (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
-    errs_per_sec = value_delta / float(time_delta)
+    # Get the difference in time, in seconds
+    td = (time_current - time_compare).seconds
+    errs_per_sec = value_delta / float(td)
     if errs_per_sec >= errs_for_crit:
         if errors == '':
             errors = name + ': ' + str(round(errs_per_sec, 4))
@@ -176,5 +186,5 @@ elif string:
     addToMsg('OK: ' + string)
     quit(exit_ok)
 else:
-    addToMsg('OK: no data to compare.')
-    quit(exit_ok)
+    addToMsg('UNKNOWN: no data to compare.')
+    quit(exit_err)
