@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.24-KUMIRELEASE4) unstable; urgency=low
+
+  * Remove debugging output in check_haproxy_errors.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 08 Apr 2013 11:48:54 +0200
+
 nagios-plugins-kumina (2.24-KUMIRELEASE3) unstable; urgency=low
 
   * Fix check_haproxy_errors script and make it more readable.

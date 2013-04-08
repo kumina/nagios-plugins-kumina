@@ -117,7 +117,6 @@ for i in range(len(points)):
         if next_delta < delta and next_delta > interval:
             # Remove the current point, we don't need it anymore
             datapoints.remove(points[i])
-            print "Remove "+str(points[i].time)
             # Continue to the next point
             continue
     # We get here when there are no additional points that's closer to the interval but not shorter than it.
