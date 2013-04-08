@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.24-KUMIRELEASE2) unstable; urgency=low
+
+  * Change path of the root key
+
+ -- Pieter Lexis <pieter@kumina.nl>  Mon, 08 Apr 2013 10:27:42 +0200
+
 nagios-plugins-kumina (2.24-KUMIRELEASE1) unstable; urgency=low
 
   * check_dnssec_validation.py now works with our icinga

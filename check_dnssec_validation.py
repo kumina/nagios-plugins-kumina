@@ -38,7 +38,7 @@ args=parser.parse_args()
 ctx = unbound.ub_ctx()
 
 # This key-file should be created once using unbound-anchor(8)
-ctx.set_option('auto-trust-anchor-file:', '/var/lib/nagios/root.key')
+ctx.set_option('auto-trust-anchor-file:', '/var/lib/icinga/root.key')
 
 status, result = ctx.resolve(args.zone, rrtype=unbound.RR_TYPE_SOA)
 
