@@ -16,9 +16,30 @@ if [ `/usr/bin/whoami` != 'root' ]; then
 	exit 3
 fi
 
+WARN_AT=0
+CRIT_AT=0
+
+while getopts w:c: name
+do
+	case $name in
+	w)
+		WARN_AT="$OPTARG"
+		;;
+	c)
+		CRIT_AT="$OPTARG"
+		;;
+	*)
+		echo "usage: $0 [-w num_warning] [-c num_critical]\n" >&2
+		exit 1
+	esac
+done
+shift $(($OPTIND - 1))
+
 STATE=4
 CRIT_MODULES=''
 WARN_MODULES=''
+CRIT_NUM=0
+WARN_NUM=0
 LOADED_SHARED_MODULES=`/usr/sbin/apache2ctl -M 2>/dev/null | /usr/bin/awk '/\(shared\)/ { print $1 }'`
 for module in $LOADED_SHARED_MODULES; do
 	if [ $STATE -eq 4 ]; then STATE=0; fi
@@ -30,11 +51,13 @@ for module in $LOADED_SHARED_MODULES; do
 			# All is fine
 			continue
 		else
-			if [ $STATE -lt 2 ]; then STATE=2; fi
+			CRIT_NUM=$(($CRIT_NUM+1))
+			if [ $STATE -lt 2 ] && [ $CRIT_NUM -gt $CRIT_AT ]; then STATE=2; fi
 			CRIT_MODULES="$CRIT_MODULES$ON_DISK;"
 		fi
 	else
-		if [ $STATE -lt 1 ]; then STATE=1; fi
+		WARN_NUM=$(($WARN_NUM+1))
+		if [ $STATE -lt 1 ] && [ $WARN_NUM -gt $WARN_AT ]; then STATE=1; fi
 		WARN_MODULES="$WARN_MODULES$module"
 	fi
 done

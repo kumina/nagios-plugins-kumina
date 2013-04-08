@@ -1,3 +1,13 @@
+nagios-plugins-kumina (2.24-KUMIRELEASE5) unstable; urgency=low
+
+  * Yet another fix, this time for check_apache_modules. We've got
+    a situation in which we need to allow some unknown modules.
+    You can now add a -w # or -c # option to the command to only
+    warn or crit when a treshold is reached. Both default to 0, so
+    they start warning or critting when either is 1.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 08 Apr 2013 15:39:51 +0200
+
 nagios-plugins-kumina (2.24-KUMIRELEASE4) unstable; urgency=low
 
   * Remove debugging output in check_haproxy_errors.
