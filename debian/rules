@@ -24,6 +24,8 @@ install: build
 		${NPDIR}/usr/lib/nagios/plugins/check_sslcert
 	install -m 775 check_loadtrend \
 		${NPDIR}/usr/lib/nagios/plugins/check_loadtrend
+	install -m 775 check_cdorked_by_shm_size \
+		${NPDIR}/usr/lib/nagios/plugins/check_cdorked_by_shm_size
 	for file in check_*.sh; do \
 		tmp="`basename $$file .sh`"; \
 		install -m 775 $$file ${NPDIR}/usr/lib/nagios/plugins/$$tmp``; \

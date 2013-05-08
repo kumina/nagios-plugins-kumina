@@ -1,3 +1,24 @@
+nagios-plugins-kumina (2.25-KUMIRELEASE2) unstable; urgency=low
+
+  * And also the rules file. I fail at packaging.
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 08 May 2013 13:22:25 +0200
+
+nagios-plugins-kumina (2.25-KUMIRELEASE1) unstable; urgency=low
+
+  * Modify the Makefile so it actually builds the CDorked check.
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 08 May 2013 13:12:30 +0200
+
+nagios-plugins-kumina (2.25-KUMIRELEASE0) unstable; urgency=low
+
+  * Add check_debsums, to check if debsums for packages have
+    been changed.
+  * Add check_cdorked_by_shm, to check for machines infected
+    with Linux/Cdorked.A. Thanks to ESET for the C app!
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 08 May 2013 11:59:28 +0200
+
 nagios-plugins-kumina (2.24-KUMIRELEASE5) unstable; urgency=low
 
   * Yet another fix, this time for check_apache_modules. We've got

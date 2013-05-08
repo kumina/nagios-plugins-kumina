@@ -1,6 +1,6 @@
 CFLAGS=-O2 -Wall -Wmissing-prototypes -Wstrict-prototypes -Werror
 
-CHECKS=check_loadtrend check_sslcert
+CHECKS=check_loadtrend check_sslcert check_cdorked_by_shm_size
 
 all: $(CHECKS)
 
