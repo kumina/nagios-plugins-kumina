@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.26-KUMIRELEASE0) unstable; urgency=low
+
+  * Add the linux bonding check from http://folk.uio.no/trondham/software/check_linux_bonding.html
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 22 May 2013 15:49:05 +0200
+
 nagios-plugins-kumina (2.25-KUMIRELEASE2) unstable; urgency=low
 
   * And also the rules file. I fail at packaging.
