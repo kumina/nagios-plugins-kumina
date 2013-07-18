@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.28-KUMIRELEASE0) unstable; urgency=low
+
+  * Add the check_pdns_zones.py check.
+
+ -- Pieter Lexis <pieter@kumina.nl>  Thu, 18 Jul 2013 15:22:10 +0200
+
 nagios-plugins-kumina (2.27-KUMIRELEASE0) unstable; urgency=low
 
   * Add timeout to check_http_port_url_autostart
