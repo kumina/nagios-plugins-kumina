@@ -5,6 +5,9 @@
 #
 # AUTHOR: Trond H. Amundsen <t.h.amundsen@usit.uio.no>
 #
+# Modified by Tim Stoop <tim@kumina.nl> to allow specific bond devices to
+# be provided on the commandline.
+#
 # Copyright (C) 2009-2012 Trond H. Amundsen
 #
 # This program is free software: you can redistribute it and/or modify
@@ -41,9 +44,9 @@ $SIG{__WARN__} = sub { push @perl_warnings, [@_]; };
 
 # Version and similar info
 $NAME    = 'check_linux_bonding';
-$VERSION = '1.3.2';
-$AUTHOR  = 'Trond H. Amundsen';
-$CONTACT = 't.h.amundsen@usit.uio.no';
+$VERSION = '1.3.2-kumina0';
+$AUTHOR  = 'Tim Stoop';
+$CONTACT = 'tim@kumina.nl';
 
 # Exit codes
 $E_OK       = 0;
@@ -70,6 +73,7 @@ $HELP = <<'END_HELP';
 
 OPTIONS:
 
+   -d, --device        The bond device to check
    -t, --timeout       Plugin timeout in seconds [5]
    -s, --state         Prefix alerts with alert state
    -S, --short-state   Prefix alerts with alert state abbreviated
@@ -114,7 +118,8 @@ END_LICENSE
     );
 
 # Get options
-GetOptions('t|timeout=i'    => \$opt{timeout},
+GetOptions('d|device=s'     => \$opt{device},
+	   't|timeout=i'    => \$opt{timeout},
 	   'h|help'         => \$opt{help},
 	   'V|version'      => \$opt{version},
 	   'b|blacklist=s'  => \@{ $opt{blacklist} },
@@ -260,11 +265,15 @@ sub find_bonding_sysfs {
 	return {};
     }
 
-    # get bonding masters
-    open my $MASTER, '<', $masters_file
-      or unknown_error("Couldn't open $masters_file: $!");
-    @bonds = split m{\s+}xms, <$MASTER>;
-    close $MASTER;
+    if ( $opt{device} ) {
+    	@bonds = $opt{device};
+    } else {
+        # get bonding masters
+        open my $MASTER, '<', $masters_file
+          or unknown_error("Couldn't open $masters_file: $!");
+        @bonds = split m{\s+}xms, <$MASTER>;
+        close $MASTER;
+    }
 
     foreach my $bond (@bonds) {
 

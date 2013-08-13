@@ -16,6 +16,12 @@ nagios-plugins-kumina (2.27-KUMIRELEASE0) unstable; urgency=low
 
  -- Rutger Spiertz <rutger@kumina.nl>  Tue, 11 Jun 2013 09:54:05 +0200
 
+nagios-plugins-kumina (2.26-KUMIRELEASE1) unstable; urgency=low
+
+  * Modify the bonding check to allow specific interfaces.
+
+ -- Tim Stoop <tim@kumina.nl>  Thu, 23 May 2013 13:16:25 +0200
+
 nagios-plugins-kumina (2.26-KUMIRELEASE0) unstable; urgency=low
 
   * Add the linux bonding check from http://folk.uio.no/trondham/software/check_linux_bonding.html
