@@ -95,6 +95,7 @@ if (-e $params->{'config'}) {
 			'$path =~ m#^/proc/#',
 			'$path =~ m#^/sys#',
 			'$path =~ m#^/tmp/#',
+			'$path =~ m#^/run/#',
 			'$path =~ m#^/var/run/#',
 			'$path =~ m#^/var/tmp/#',
 		]

@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.30-KUMIRELEASE0) unstable; urgency=low
+
+  * check_libs: Add /run/ to the ignored paths
+
+ -- Pieter Lexis <pieter@kumina.nl>  Thu, 15 Aug 2013 13:53:45 +0200
+
 nagios-plugins-kumina (2.29-KUMIRELEASE1) unstable; urgency=low
 
   * Apply old patch from 2.26-1.
