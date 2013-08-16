@@ -77,7 +77,7 @@ use Time::HiRes qw ( gettimeofday tv_interval);
 use List::Util qw ( shuffle );
 
 use vars qw( %opts @refs $zone $expected_ns_rrset $data $start $stop );
-getopts('Z:N:d', \%opts);
+getopts('H:Z:N:d', \%opts);
 usage() unless $opts{Z};
 usage() if $opts{h};
 $zone = $opts{Z};
