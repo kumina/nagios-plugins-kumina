@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.30-KUMIRELEASE2) unstable; urgency=low
+
+  * Fix for output of backup status check.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 10 Sep 2013 11:08:29 +0200
+
 nagios-plugins-kumina (2.30-KUMIRELEASE1) unstable; urgency=low
 
   * check_zone_auth.pl: fix for a quirk in the Kumina icinga setup/puppet code

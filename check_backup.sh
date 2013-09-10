@@ -20,6 +20,14 @@ if [ -f /usr/bin/offsite-backup ]; then
 		exit 4
 	fi
 	. /etc/backup/offsite-backup.conf
+	# This is defaulted in offsite backup script, but we need it here
+	listfile=${listfile:-"/tmp/backuplist"}
+	# If the last timestamp is empty, error intelligently.
+	if [ -z $LAST_TIMESTAMP ]; then
+		/bin/rm $listfile
+		echo "BACKUP UNKNOWN: Empty response received for status"
+		exit 4
+	fi
 elif [ -f /usr/bin/local-backup ]; then
 	LAST_TIMESTAMP=`/usr/bin/local-backup list | /usr/bin/tail -n 1 | /usr/bin/cut -d' ' -f3- | /usr/bin/xargs -i /bin/date -d '{}' +%s`
 	if [ $? -gt 0 ]; then
@@ -27,6 +35,11 @@ elif [ -f /usr/bin/local-backup ]; then
 		exit 4
 	fi
 	. /etc/backup/local-backup.conf
+	# If the last timestamp is empty, error intelligently.
+	if [ -z $LAST_TIMESTAMP ]; then
+		echo "BACKUP UNKNOWN: Empty response received for status"
+		exit 4
+	fi
 else
 	echo "BACKUP UNKNOWN: No known backup solution installed."
 	exit 4
