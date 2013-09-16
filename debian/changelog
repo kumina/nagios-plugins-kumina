@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.31-KUMIRELEASE0) unstable; urgency=low
+
+  * Add check_elasticsearch
+
+ -- Pieter Lexis <pieter@kumina.nl>  Mon, 16 Sep 2013 14:05:28 +0200
+
 nagios-plugins-kumina (2.30-KUMIRELEASE2) unstable; urgency=low
 
   * Fix for output of backup status check.
