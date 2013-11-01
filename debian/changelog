@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.32-KUMIRELEASE1) unstable; urgency=low
+
+  * check_service_status.sh: minify and use 'service' command when available
+
+ -- Pieter Lexis <pieter@kumina.nl>  Fri, 01 Nov 2013 12:38:24 +0100
+
 nagios-plugins-kumina (2.32-KUMIRELEASE0) unstable; urgency=low
 
   * Add the check check_service_status.sh

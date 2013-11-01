@@ -23,13 +23,19 @@ UNKNOWN=3;
 
 # Not enough arguments makes no sense.
 if [ $# -lt 1 ]; then
-	echo "No script to check."
+	echo "No service to check."
 	exit $UNKNOWN
 fi
 
-# Check if script exists and is executable.
-if [ ! -x "/etc/init.d/$1" ]; then
-	echo "Script does not exist or is not executable."
+if [ -x "/usr/sbin/service" ]; then
+	# Use 'service' command, as it's forward-compatible with other init systems
+	CHECK_CMD="/usr/sbin/service ${1}"
+elif [ -x "/etc/init.d/$1" ]; then
+	# Fail-back if there is no 'service' command.
+	# Check if script exists and is executable.
+	CHECK_CMD="/etc/init.d/${1}"
+else
+	echo "Service does not exist or its initscript is not executable."
 	exit $CRITICAL
 fi
 
@@ -40,7 +46,7 @@ if ([ `id -u` != "0" ]); then
 fi
 
 # Ask script for status.
-RETTEXT=`/etc/init.d/$1 status`
+RETTEXT=`${CHECK_CMD} status 2>&1`
 RETVAL=$?
 
 echo $RETTEXT
@@ -49,13 +55,7 @@ case $RETVAL in
 	0)
 		exit $OK
 	;;
-	1)
-		exit $CRITICAL
-	;;
-	2)
-		exit $CRITICAL
-	;;
-	3)
+	1|2|3)
 		exit $CRITICAL
 	;;
 	*)
