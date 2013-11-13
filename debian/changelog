@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.33-KUMIRELEASE1) unstable; urgency=low
+
+  * check_backup.sh: Add the date+time of the last backup to the output
+
+ -- Pieter Lexis <pieter@kumina.nl>  Wed, 13 Nov 2013 16:12:34 +0100
+
 nagios-plugins-kumina (2.32-KUMIRELEASE1) unstable; urgency=low
 
   * check_service_status.sh: minify and use 'service' command when available

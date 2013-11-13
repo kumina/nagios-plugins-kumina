@@ -54,16 +54,19 @@ READABLE_DIFFERENCE=$(($DIFFERENCE/3600))
 ALLOWANCE=$(((25*3600)+$SPLAY))
 CRIT_ALLOWANCE=$((2*$ALLOWANCE))
 
+READABLE_LAST_TIMESTAMP="$(/bin/date -d @1384291428 +'on %b %M %Y at %H:%M (%Z)')"
+PERF_DATA="$(/bin/cat /tmp/backuplist | /usr/bin/cut -d' ' -f9- | /usr/bin/head -n-1 | /usr/bin/tail -n+2 | /bin/sed ':a;N;$!ba;s/\n/, /g')"
+
 if [ $DIFFERENCE -gt $CRIT_ALLOWANCE ]; then
 	# This is critical!
-	echo "BACKUP CRITICAL: Last succesful backup was $READABLE_DIFFERENCE hours ago!"
+	echo "BACKUP CRITICAL: Last backup $READABLE_DIFFERENCE hours ago $READABLE_LAST_TIMESTAMP!|$PERF_DATA"
 	exit 2
 elif [ $DIFFERENCE -gt $ALLOWANCE ]; then
 	# Not too critical, let's warn
-	echo "BACKUP WARNING: Last succesful backup was $READABLE_DIFFERENCE hours ago."
+	echo "BACKUP WARNING: Last backup was $READABLE_DIFFERENCE hours ago $READABLE_LAST_TIMESTAMP.|$PERF_DATA"
 	exit 1
 else
 	# All is fine.
-	echo "BACKUP OK: Last succesful backup was $READABLE_DIFFERENCE hours ago."
+	echo "BACKUP OK: Last backup was $READABLE_DIFFERENCE hours ago $READABLE_LAST_TIMESTAMP.|$PERF_DATA"
 	exit 0
 fi
