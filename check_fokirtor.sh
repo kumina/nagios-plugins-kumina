@@ -23,24 +23,20 @@ fi
 # For all pids of the ssh process, do the check
 for pid in `/bin/pidof sshd`; do
         t=$(/bin/mktemp)
-        /bin/mv $t $t.$pid
-
-        # call gdb directly, without needing the gcore script from debian-wheezy
-        #/usr/local/bin/gcore -o $t $pid >/dev/null
         /usr/bin/gdb </dev/null --nx --batch \
           -ex "set pagination off" -ex "set height 0 " -ex "set width 0" \
-          -ex "attach $pid" -ex "gcore $t.$pid" -ex detach -ex quit
+          -ex "attach $pid" -ex "gcore $t" -ex detach -ex quit
 
         i=0
         for str in hbt= key= dhost= sp= sk= dip=; do
-                /usr/bin/strings $t.$pid | /bin/grep "${str}[[:digit:]]"
+                /usr/bin/strings $t | /bin/grep "${str}[[:digit:]]"
                 if [ $? -eq 0 ]; then
                         i=$(($i + 1))
                 fi
         done
-        /bin/rm $t.$pid
+        /bin/rm $t
         if [ $i -eq 6 ]; then
-                echo "CRITICAL: String '${str}' found in sshd process ${pid}!"
+                echo "CRITICAL: Fokirtor strings found in sshd process ${pid}!"
                 exit 2
         fi
 done
