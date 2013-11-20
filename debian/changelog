@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.34-KUMIRELEASE3) unstable; urgency=low
+
+  * check_fokirtor.sh: Only report if all conditions are met.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 19 Nov 2013 17:00:03 +0100
+
 nagios-plugins-kumina (2.34-KUMIRELEASE2) unstable; urgency=low
 
   * Fix dependency for gdb-minimal or gdb.
