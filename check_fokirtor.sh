@@ -28,7 +28,7 @@ for pid in `/bin/pidof sshd`; do
         # call gdb directly, without needing the gcore script from debian-wheezy
         #/usr/local/bin/gcore -o $t $pid >/dev/null
         gdb </dev/null --nx --batch \
-          -ex "set pagination off" -ex "set height 0 " \
+          -ex "set pagination off" -ex "set height 0 " -ex "set width 0" \
           -ex "attach $pid" -ex "gcore $t.$pid" -ex detach -ex quit
 
         for str in hbt= key= dhost= sp= sk= dip=; do
