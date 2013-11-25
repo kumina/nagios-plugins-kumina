@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.34-KUMIRELEASE6) unstable; urgency=low
+
+  * check_backup.sh: Local-backup doesn't have a conf option.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 25 Nov 2013 21:32:56 +0100
+
 nagios-plugins-kumina (2.34-KUMIRELEASE5) unstable; urgency=low
 
   * check_backup.sh: Make Pieter's test code work for production.
