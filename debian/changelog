@@ -1,3 +1,10 @@
+nagios-plugins-kumina (2.34-KUMIRELEASE5) unstable; urgency=low
+
+  * check_backup.sh: Make Pieter's test code work for production.
+  * check_backup.sh: Allow passing of config file.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 25 Nov 2013 14:13:55 +0100
+
 nagios-plugins-kumina (2.34-KUMIRELEASE4) unstable; urgency=low
 
   * Merge changes from @aibor to use gdb instead of gcore script.
