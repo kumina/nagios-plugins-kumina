@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.34-KUMIRELEASE7) unstable; urgency=low
+
+  * check_value_from_file.sh: Add check for easily parsing a value from a file.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 11 Feb 2014 15:50:04 +0100
+
 nagios-plugins-kumina (2.34-KUMIRELEASE6) unstable; urgency=low
 
   * check_backup.sh: Local-backup doesn't have a conf option.
