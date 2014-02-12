@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.34-KUMIRELEASE8) unstable; urgency=low
+
+  * check_value_from_file.sh: Improve check by checking for readable file.
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 12 Feb 2014 14:28:11 +0100
+
 nagios-plugins-kumina (2.34-KUMIRELEASE7) unstable; urgency=low
 
   * check_value_from_file.sh: Add check for easily parsing a value from a file.

@@ -41,7 +41,7 @@ if [ -z $input_file ]; then echo "Filename required. Try -h."; exit 4; fi
 # And a key
 if [ -z $key ]; then echo "Key required. Try -h."; exit 4; fi
 # File must exist.
-if [ ! -f $input_file ]; then echo "File does not exist!"; exit 4; fi
+if [ ! -r $input_file ]; then echo "File does not exist or is not readable by $(whoami)!"; exit 4; fi
 
 value=`/bin/grep "^$key" $input_file | /usr/bin/cut -d"$seperator" -f2`
 value=`printf '%f' "$value"`
