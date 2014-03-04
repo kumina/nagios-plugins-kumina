@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.35-KUMIRELEASE2) unstable; urgency=low
+
+  * check_emptyfirewall: Remove unneeded sudo invocation.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 04 Mar 2014 14:07:28 +0100
+
 nagios-plugins-kumina (2.35-KUMIRELEASE1) unstable; urgency=low
 
   * Added check_ro.py

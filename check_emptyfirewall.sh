@@ -6,12 +6,12 @@
 opts=${*:--4 -6}
 for opt in $opts; do
 	if [ $opt = "-4" ]; then
-		if ! sudo iptables-save | grep -q '^-A'; then
+		if ! iptables-save | grep -q '^-A'; then
 			echo CRITICAL: no IPv4 firewall rules
 			exit 2
 		fi
 	elif [ $opt = "-6" ]; then
-		if ! sudo ip6tables-save | grep -q '^-A'; then
+		if ! ip6tables-save | grep -q '^-A'; then
 			echo CRITICAL: no IPv6 firewall rules
 			exit 2
 		fi
