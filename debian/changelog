@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.36KUMIRELEASE1) UNRELEASED; urgency=low
+
+  * Add a python check_zone_auth
+
+ -- Pieter Lexis <pieter@kumina.nl>  Tue, 04 Mar 2014 14:19:01 +0100
+
 nagios-plugins-kumina (2.35-KUMIRELEASE2) unstable; urgency=low
 
   * check_emptyfirewall: Remove unneeded sudo invocation.
