@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.37KUMIRELEASE1) unstable; urgency=low
+
+  * Added check_rabbitmq_server
+
+ -- Pieter Lexis <pieter@kumina.nl>  Wed, 30 Apr 2014 13:22:24 +0200
+
 nagios-plugins-kumina (2.36KUMIRELEASE1) UNRELEASED; urgency=low
 
   * Add a python check_zone_auth
