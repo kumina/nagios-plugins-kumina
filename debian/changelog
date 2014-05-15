@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.38KUMIRELEASE1) stable; urgency=low
+
+  * Cassandra nodetool output changed in version 1.2, remove support for older versions.
+
+ -- Tim Stoop <tim@kumina.nl>  Thu, 15 May 2014 14:16:56 +0200
+
 nagios-plugins-kumina (2.37KUMIRELEASE1) unstable; urgency=low
 
   * Added check_rabbitmq_server
