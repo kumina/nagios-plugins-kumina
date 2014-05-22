@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from sys import exit
+import re
 
 with open('/proc/mounts', 'r') as f:
     mounts = f.readlines()
