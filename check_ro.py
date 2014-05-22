@@ -5,9 +5,12 @@ with open('/proc/mounts', 'r') as f:
     mounts = f.readlines()
 
 ro_mounts = []
+docker_re = re.compile('^/srv/docker/containers/.+')
 
 for mount in mounts:
     mount = mount.split(' ')
+    if docker_re.match(mount[1]):
+        continue
     for opt in mount[3].split(','):
         if opt == 'ro':
             ro_mounts.append(mount[1])

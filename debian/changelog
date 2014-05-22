@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.39KUMIRELEASE1) stable; urgency=low
+
+  * check_ro: Ignore docker aufs mounts
+
+ -- Pieter Lexis <pieter@kumina.nl>  Thu, 22 May 2014 16:18:24 +0200
+
 nagios-plugins-kumina (2.38KUMIRELEASE2) stable; urgency=low
 
   * Actually add the check_rabbitmq_server to the repository.
