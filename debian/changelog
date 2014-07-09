@@ -1,8 +1,18 @@
-nagios-plugins-kumina (2.39KUMIRELEASE2) UNRELEASED; urgency=low
+nagios-plugins-kumina (2.39KUMIRELEASE4) stable; urgency=low
 
+  * check_glassfish: Don't use sudo.
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 09 Jul 2014 14:54:51 +0200
+
+nagios-plugins-kumina (2.39KUMIRELEASE3) stable; urgency=low
+
+  [ Pieter Lexis ]
   * check_ro: add a missing import
 
- -- Pieter Lexis <pieter@kumina.nl>  Thu, 22 May 2014 16:25:44 +0200
+  [ Tim Stoop ]
+  * check_glassfish: Add check to check glassfish instances via the DAS.
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 09 Jul 2014 14:47:11 +0200
 
 nagios-plugins-kumina (2.39KUMIRELEASE1) stable; urgency=low
 
