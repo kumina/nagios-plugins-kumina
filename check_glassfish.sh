@@ -8,6 +8,7 @@ if [ -z $NAME ]; then
 fi
 
 CACHEFILE=/var/cache/glassfish-list-instances
+TEMPCACHEFILE=/var/cache/glassfish-list-instances-temp
 CACHEDIRNAME=`dirname $CACHEFILE`
 CACHEFILENAME=`basename $CACHEFILE`
 if [ `find $CACHEDIRNAME -name $CACHEFILENAME -mmin 0.5 | wc -l` -eq 0 ]; then
@@ -15,7 +16,8 @@ if [ `find $CACHEDIRNAME -name $CACHEFILENAME -mmin 0.5 | wc -l` -eq 0 ]; then
         if [ ! -f "${CACHEFILE}.lock" ]; then
                 touch "${CACHEFILE}.lock"
                 # Run the command to refresh the cache
-                su glassfish -c '/opt/glassfish-3.1.2.2/glassfish/bin/asadmin --port 8048 list-instances' > $CACHEFILE
+                su glassfish -c '/opt/glassfish-3.1.2.2/glassfish/bin/asadmin --port 8048 list-instances' > $TEMPCACHEFILE
+                mv -f $TEMPCACHEFILE $CACHEFILE
                 rm "${CACHEFILE}.lock"
         fi
 fi
