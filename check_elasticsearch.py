@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 from nagioscheck import NagiosCheck, UsageError
 from nagioscheck import PerformanceMetric, Status
@@ -43,7 +43,7 @@ class ESNode(object):
         self.attributes = attributes
 
 class ElasticSearchCheck(NagiosCheck):
-    version = '0.2.0'
+    version = '1.0.1'
 
     def __init__(self):
         NagiosCheck.__init__(self)
@@ -53,13 +53,14 @@ class ElasticSearchCheck(NagiosCheck):
         self.add_option('f', 'failure-domain', 'failure_domain', "A "
                         "comma-separated list of ElasticSearch "
                         "attributes that make up your cluster's "
-                        "failure domain.  This should be the same list "
+                        "failure domain[0].  This should be the same list "
                         "of attributes that ElasticSearch's location-"
                         "aware shard allocator has been configured "
                         "with.  If this option is supplied, additional "
                         "checks are carried out to ensure that primary "
                         "and replica shards are not stored in the same "
-                        "failure domain.")
+                        "failure domain. "
+                        "[0]: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/modules-cluster.html")
 
         self.add_option('H', 'host', 'host', "Hostname or network "
                         "address to probe.  The ElasticSearch API "
@@ -99,6 +100,11 @@ class ElasticSearchCheck(NagiosCheck):
         # Data retrieval
         #
 
+        # Request "about" info, so we can figure out the ES version,
+        # to allow for version-specific API changes.
+        es_about = get_json(r'http://%s:%d/' % (host, port))
+        es_version = es_about['version']['number']
+
         # Request cluster 'health'.  /_cluster/health is like a tl;dr 
         # for /_cluster/state (see below).  There is very little useful 
         # information here.  We are primarily interested in ES' cluster 
@@ -119,7 +125,7 @@ class ElasticSearchCheck(NagiosCheck):
         # Request a bunch of useful numbers that we export as perfdata.  
         # Details like the number of get, search, and indexing 
         # operations come from here.
-        es_stats = get_json(r'http://%s:%d/_cluster/nodes/_local/'
+        es_stats = get_json(r'http://%s:%d/_nodes/_local/'
                              'stats?all=true' % (host, port))
 
         myid = es_stats['nodes'].keys()[0]
@@ -216,11 +222,21 @@ class ElasticSearchCheck(NagiosCheck):
         #     - name_index_map
         #
         indices = es_state['metadata']['indices']
+        n_indices = len(indices)
+        n_closed_indices = 0
         for i in indices:
+            if indices[i]["state"] == "close":
+                n_closed_indices += 1
+                continue
             idx_stns = indices[i]['settings']
-            idx = ESIndex(i,
-                          int(idx_stns['index.number_of_shards']),
-                          int(idx_stns['index.number_of_replicas']))
+            if version(es_version) < version("1.0.0"):
+                idx = ESIndex(i,
+                              int(idx_stns['index.number_of_shards']),
+                              int(idx_stns['index.number_of_replicas']))
+            else:
+                idx = ESIndex(i,
+                              int(idx_stns['index']['number_of_shards']),
+                              int(idx_stns['index']['number_of_replicas']))
 
             name_index_map[i] = idx
 
@@ -324,24 +340,50 @@ class ElasticSearchCheck(NagiosCheck):
                    ["cluster_data_nodes",            n_dnodes],
                    ["cluster_active_shards",         n_active_shards],
                    ["cluster_relocating_shards",     n_relocating_shards],
-                   ["cluster_initialising_shards",
-                    n_initialising_shards],
+                   ["cluster_initialising_shards",   n_initialising_shards],
                    ["cluster_unassigned_shards",     n_unassigned_shards],
-                   ["cluster_total_shards",          n_shards]]
+                   ["cluster_total_shards",          n_shards],
+                   ["cluster_total_indices",         n_indices],
+                   ["cluster_closed_indices",        n_closed_indices]]
 
         other2perfdata(metrics)
 
-        metrics = [["storesize",  'indices.store.size_in_bytes', "B"],
-                   ["documents",  'indices.docs.count'],
-                   ["index_ops",  'indices.indexing.index_total', "c"],
-                   ["index_time", 'indices.indexing.'
-                                  'index_time_in_millis', "c"],
-                   ["query_ops",  'indices.search.query_total', "c"],
-                   ["query_time", 'indices.search.'
-                                  'query_time_in_millis', "c"],
-                   ["flush_ops",  'indices.flush.total', "c"],
-                   ["flush_time", 'indices.flush.'
-                                  'total_time_in_millis', "c"]]
+        metrics = [["storesize",    'indices.store.size_in_bytes', "B"],
+                   ["documents",    'indices.docs.count'],
+                   
+                   ["index_ops",    'indices.indexing.index_total', "c"],
+                   ["index_time",   'indices.indexing.'
+                                    'index_time_in_millis', "c"],
+                   
+                   ["flush_ops",    'indices.flush.total', "c"],
+                   ["flush_time",   'indices.flush.'
+                                    'total_time_in_millis', "c"],
+                   
+                   ["throttle_time", "indices.store.throttle_time_in_millis", "c"],
+                   
+                   ["index_ops",    "indices.indexing.index_total", "c"],
+                   ["index_time",   "indices.indexing.index_time_in_millis", "c"],
+                   ["delete_ops",   "indices.indexing.delete_total", "c"],
+                   ["delete_time",  "indices.indexing.delete_time_in_millis", "c"],
+                   
+                   ["get_ops",      "indices.get.total", "c"],
+                   ["get_time",     "indices.get.time_in_millis", "c"],
+                   ["exists_ops",   "indices.get.exists_total", "c"],
+                   ["exists_time",  "indices.get.exists_time_in_millis", "c"],
+                   ["missing_ops",  "indices.get.missing_total", "c"],
+                   ["missing_time", "indices.get.missing_time_in_millis", "c"],
+                   
+                   ["query_ops",    'indices.search.query_total', "c"],
+                   ["query_time",   'indices.search.query_time_in_millis', "c"],
+                   ["fetch_ops",    "indices.search.fetch_total", "c"],
+                   ["fetch_time",   "indices.search.fetch_time_in_millis", "c"],
+                   
+                   ["merge_ops",    "indices.merges.total", "c"],
+                   ["merge_time",   "indices.merges.time_in_millis", "c"],
+
+                   ["refresh_ops",  "indices.refresh.total", "c"],
+                   ["refresh_time", "indices.refresh.total_time_in_millis", "c"],
+                  ]
 
         dict2perfdata(es_stats['nodes'][myid], metrics)
 
@@ -353,7 +395,7 @@ class ElasticSearchCheck(NagiosCheck):
 
         msg = "Monitoring cluster '%s'" % es_health['cluster_name']
 
-        # Assertion:  Each shard has one primary in STARTED state.
+        # Assertion:  Each shard has one primary in STARTED or RELOCATING state.
         downgraded = False
 
         for idx_name, idx in name_index_map.iteritems():
@@ -364,7 +406,7 @@ class ElasticSearchCheck(NagiosCheck):
                     detail.append("Index '%s' missing primary on "
                                   "shard %d" % (idx_name, shard_no))
                 else:
-                    if primary.state != SHARD_STATE['STARTED']:
+                    if primary.state not in ( SHARD_STATE['STARTED'], SHARD_STATE['RELOCATING'] ):
                         downgraded |= self.downgrade_health(RED)
                         detail.append("Index '%s' primary down on "
                                       "shard %d" % (idx_name, shard_no))
@@ -393,7 +435,7 @@ class ElasticSearchCheck(NagiosCheck):
                                   "shard %d" % (idx_name, shard_no))
 
                 for replica in primary_replica_map[primary]:
-                    if replica.state != SHARD_STATE['STARTED']:
+                    if replica.state not in ( SHARD_STATE['STARTED'], SHARD_STATE['RELOCATING'] ):
                         downgraded |= self.downgrade_health(YELLOW)
                         detail.append("Index '%s' replica down on "
                                       "shard %d" % (idx_name, shard_no))
@@ -489,7 +531,7 @@ class ElasticSearchCheck(NagiosCheck):
                          perfdata)
 
         raise Status(HEALTH_MAP[self.health],
-                     (msg, None, "%s\n\n%s" % (msg, "\n".join(detail))),
+                     (msg, None, "%s %s" % (msg, " ".join(detail))),
                      perfdata)
 
     def downgrade_health(self, new_health):
@@ -536,6 +578,11 @@ def get_json(uri):
         raise Status('unknown', ("API returned nonsense",))
 
     return j
+
+def version(version_string):
+    """Accept a typical version string (ex: 1.0.1) and return a tuple
+    of ints, allowing for reasonable comparison."""
+    return tuple([int(i) for i in version_string.split('.')])
 
 if __name__ == '__main__':
     ElasticSearchCheck().run()
