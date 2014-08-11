@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.39KUMIRELEASE8) stable; urgency=low
+
+  * The /sys is mounted ro on docker machines as well.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 11 Aug 2014 08:51:16 +0200
+
 nagios-plugins-kumina (2.39KUMIRELEASE7) stable; urgency=low
 
   * check_elasticsearch: Update for ES 1.
