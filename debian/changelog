@@ -1,8 +1,27 @@
-nagios-plugins-kumina (2.39KUMIRELEASE9) stable; urgency=low
+nagios-plugins-kumina (2.39KUMIRELEASE12) stable; urgency=low
 
   * check_linux_bonding: Test path for bonding interface.
 
  -- Adrian van Dongen <adrian@kumina.nl>  Mon, 06 Oct 2014 14:58:06 +0200
+
+nagios-plugins-kumina (2.39KUMIRELEASE11) stable; urgency=low
+
+  * check_elasticsearch: Make message nicer.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 16 Sep 2014 12:00:53 +0200
+
+nagios-plugins-kumina (2.39KUMIRELEASE10) stable; urgency=low
+
+  * check_elasticsearch: Also make sure exit code is correct.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 16 Sep 2014 11:55:19 +0200
+
+nagios-plugins-kumina (2.39KUMIRELEASE9) stable; urgency=low
+
+  * check_elasticsearch: Make it less complex.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 16 Sep 2014 11:37:47 +0200
+>>>>>>> Fix elasticsearch messages.
 
 nagios-plugins-kumina (2.39KUMIRELEASE8) stable; urgency=low
 
