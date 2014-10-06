@@ -44,9 +44,9 @@ $SIG{__WARN__} = sub { push @perl_warnings, [@_]; };
 
 # Version and similar info
 $NAME    = 'check_linux_bonding';
-$VERSION = '1.3.2-kumina0';
-$AUTHOR  = 'Tim Stoop';
-$CONTACT = 'tim@kumina.nl';
+$VERSION = '1.3.2-kumina1';
+$AUTHOR  = 'Kumina Support';
+$CONTACT = 'support@kumina.nl';
 
 # Exit codes
 $E_OK       = 0;
@@ -320,11 +320,14 @@ sub find_bonding_sysfs {
 
 	# get slave status
 	foreach my $slave (@slaves) {
-	    open my $STATE, '<', "$sysdir/$bond/slave_$slave/operstate"
-	      or unknown_error("Couldn't open $sysdir/$bond/slave_$slave/operstate: $!");
-	    chop($bonding{$bond}{slave}{$slave} = <$STATE>);
-	    close $STATE;
-	}
+      my $statefile = -e "$sysdir/$bond/slave_$slave/operstate"
+        ? "$sysdir/$bond/slave_$slave/operstate"
+    : "$sysdir/$bond/lower_$slave/operstate";
+      open my $STATE, '<', "$statefile"
+        or unknown_error("Couldn't open $statefile: $!");
+      chop($bonding{$bond}{slave}{$slave} = <$STATE>);
+      close $STATE;
+  }
 
 	# get bond state
 	open my $BSTATE, '<', "$sysdir/$bond/operstate"
