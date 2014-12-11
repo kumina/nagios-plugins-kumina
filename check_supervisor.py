@@ -7,7 +7,7 @@ usage
 
 ::
 
-    check_supv -p PROCESS_NAME
+    check_supervisor -p PROCESS_NAME
 
 
 """
@@ -20,7 +20,7 @@ OK = 0
 WARNING = 1
 CRITICAL = 2
 
-SUPERV_STAT_CHECK='sudo supervisorctl status'
+SUPERV_STAT_CHECK='supervisorctl status'
 
 #supervisor states, map state to desired warning level
 supervisor_states = {

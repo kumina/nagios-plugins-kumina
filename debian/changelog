@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.40KUMIRELEASE1) stable; urgency=low
+
+  * check_supervisor.py: update doc and remove sudo from command.
+
+ -- Adrian van Dongen <adrian@kumina.nl>  Thu, 11 Dec 2014 12:45:53 +0100
+
 nagios-plugins-kumina (2.40KUMIRELEASE0) stable; urgency=low
 
   * check_supervisor.py: Check status of indivdual supervisor processes.
