@@ -104,7 +104,6 @@ serverlist = [
 "spamsources.fabel.dk",
 "spamtrap.drbl.drand.net",
 "t3direct.dnsbl.net.au",
-"tor.ahbl.org",
 "ubl.lashback.com",
 "ubl.unsubscore.com",
 "virbl.bit.nl",

@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.40KUMIRELEASE1+nmu1) stable; urgency=low
+
+  * check_rbl.py: Remove tor.ahbl.org, not recommend for mail blacklist purposes.
+
+ -- Tim Stoop <tim@kumina.nl>  Sat, 27 Dec 2014 13:13:47 +0100
+
 nagios-plugins-kumina (2.40KUMIRELEASE1) stable; urgency=low
 
   * check_supervisor.py: update doc and remove sudo from command.
