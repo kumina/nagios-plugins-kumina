@@ -1,4 +1,4 @@
-nagios-plugins-kumina (2.40KUMIRELEASE1+nmu1) stable; urgency=low
+nagios-plugins-kumina (2.41KUMIRELEASE0) stable; urgency=low
 
   * check_rbl.py: Remove tor.ahbl.org, not recommend for mail blacklist purposes.
 
