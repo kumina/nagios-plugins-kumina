@@ -1,6 +1,7 @@
 nagios-plugins-kumina (2.42KUMIRELEASE0) stable; urgency=low
 
   * check_zone_auth.py: Decrease the timeout and number of tries on delegated servers, these seems to timeout pretty often.
+  * check_sslcert.c: Compile with the -lcrypto flag.
 
  -- Tim Stoop <tim@kumina.nl>  Mon, 29 Dec 2014 09:29:24 +0100
 
