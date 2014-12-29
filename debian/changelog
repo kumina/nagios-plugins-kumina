@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.42KUMIRELEASE0) stable; urgency=low
+
+  * check_zone_auth.py: Decrease the timeout and number of tries on delegated servers, these seems to timeout pretty often.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 29 Dec 2014 09:29:24 +0100
+
 nagios-plugins-kumina (2.41KUMIRELEASE0) stable; urgency=low
 
   * check_rbl.py: Remove tor.ahbl.org, not recommend for mail blacklist purposes.

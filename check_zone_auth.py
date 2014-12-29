@@ -191,7 +191,7 @@ def get_delegation():
             for addr in refs[ref]:
                 if debug or verbose:
                     print 'Selected %s(%s) for query' % (ref, addr)
-                ans_pkt = do_query(qmsg, addr)
+                ans_pkt = do_query(qmsg, addr, timeout=3, tries=2)
                 if ans_pkt:
                     break
             if ans_pkt:
