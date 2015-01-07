@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.43KUMIRELEASE0) stable; urgency=low
+
+  * check_rbl.py: remove ahbl. they're done. 
+
+ -- Liam Macgillavry <liam@kumina.nl>  Wed, 07 Jan 2015 17:39:00 +0100
+
 nagios-plugins-kumina (2.42KUMIRELEASE0) stable; urgency=low
 
   * check_zone_auth.py: Decrease the timeout and number of tries on delegated servers, these seems to timeout pretty often.
