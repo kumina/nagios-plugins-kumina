@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.44KUMIRELEASE0) stable; urgency=low
+
+  * check_haproxy_servers.pl: new checks for servers, NOLB and nocheck
+
+ -- Liam Macgillavry <liam@kumina.nl> 
+
 nagios-plugins-kumina (2.43KUMIRELEASE0) stable; urgency=low
 
   * check_rbl.py: remove ahbl. they're done. 
