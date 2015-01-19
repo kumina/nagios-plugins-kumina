@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.44KUMIRELEASE3) stable; urgency=low
+
+  * Version bump to remove arch armhf.
+
+ -- Adrian van Dongen <adrian@kumina.nl>  Mon, 19 Jan 2015 17:24:24 +0100
+
 nagios-plugins-kumina (2.44KUMIRELEASE1) stable; urgency=low
 
   * Rebuild for architectures: armhf.
