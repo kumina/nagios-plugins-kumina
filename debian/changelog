@@ -2,7 +2,7 @@ nagios-plugins-kumina (2.45KUMIRELEASE3) stable; urgency=low
 
   * added ignore option to check_haproxy_servers
 
- -- Liam Macgillavry <liam@kumina.nl> Mon, 3 Mar 2015 11:15:00 +0100
+ -- Liam Macgillavry <liam@kumina.nl>  Mon, 3 Mar 2015 11:15:00 +0100
 
 nagios-plugins-kumina (2.44KUMIRELEASE3) stable; urgency=low
 
