@@ -47,11 +47,14 @@ my $DEBUG = 0;
 $DEBUG = "";
 my $url = "/var/run/haproxy.sock";
 my $verbose = "";
+my $ignores = "";
 GetOptions (	"debug=i" => \$DEBUG,
-				"socket=s"   => \$url,
-				"verbose" => \$verbose)
-			or die("Error in command line arguments\n");
+		"socket=s"   => \$url,
+		"verbose" => \$verbose,
+		"ignores=s" => \$ignores)
+		or die("Error in command line arguments\n");
 
+my @ignoreservers = split(',', $ignores);
 my @criticals;
 my @warnings;
 
@@ -117,6 +120,7 @@ if ( $stats ne "") {
 	my %stats3 = ();
 	my $okMsg = '';
 	foreach my $pxname ( keys(%stats) ) {
+		next if ( grep ( /^$pxname$/, @ignoreservers) );
 		$stats2{$pxname} = {
 			'act' => 0,
 			'acttot' => 0,
