@@ -294,9 +294,7 @@ def check_delegation(data, from_upstream, expected_ns_list=None):
                     ns_dict[str(addition.name)].append(addition_address)
 
             if sorted(from_upstream) != sorted(ns_dict):
-                if nameserver in from_upstream:
-                    # querying ns.foobar.nl for glue in foobar.nl is unneccessary
-                else:
+                if sorted(expected_ns_list) != sorted(from_upstream):
                     warning('Addresses of nameservers on %s(%s) don\'t match upstream glue (%s vs %s)'
                         % (nameserver, addr, from_upstream, ns_dict))
 
