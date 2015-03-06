@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.46KUMIRELEASE) stable; urgency=low
+
+  * new check_zone_auth will not expect a dns server to return glue/additional records for itself
+
+ -- Liam Macgillavry <liam@kumina.nl>  Fri, 06 Mar 2015 10:09:58 +0100
+
 nagios-plugins-kumina (2.45KUMIRELEASE3) stable; urgency=low
 
   * added ignore option to check_haproxy_servers
