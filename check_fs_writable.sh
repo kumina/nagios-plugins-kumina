@@ -31,23 +31,24 @@ done
 if [ ! -f /var/lock/$PROGNAME.lock ]; then
 	touch /var/lock/$PROGNAME.lock
 	if [[ -d $DIRNAME ]] && [[ -w $DIRNAME ]]; then
-		touch $DIRNAME/$PROGNAME-$STAMP
+		touch $DIRNAME/.$PROGNAME-$STAMP
 		if [ $? -ne 0 ]; then
 			echo "CRITICAL - cannot touch"
 			exit 2;
 		fi
-		echo "$STAMP" > $DIRNAME/$PROGNAME-$STAMP 
+		echo "$STAMP" > $DIRNAME/.$PROGNAME-$STAMP 
 		if [ $? -ne 0 ]; then 
 			echo "CRITICAL - cannot echo"
 			exit 2;
 		fi
-		READBACK=$(cat "$DIRNAME/$PROGNAME-$STAMP")
+		READBACK=$(cat "$DIRNAME/.$PROGNAME-$STAMP")
 		if [[ $READBACK -ne $STAMP ]]; then
 			echo "CRITICAL - read back value from file does not correspond with what we set!"
 			rm /var/lock/$PROGNAME.lock
 			exit 2
 		else
 			echo "OK - set and read back file on $DIRNAME correctly"
+			rm $DIRNAME/.$PROGNAME-$STAMP
 			rm /var/lock/$PROGNAME.lock
 			exit 0
 		fi
