@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.48KUMIRELEASE) stable; urgency=low
+
+  * check_fs_writable for real now
+
+ -- Liam Macgillavry <liam@kumina.nl>  Mon, 09 Mar 2015 17:45:04 +0100
+
 nagios-plugins-kumina (2.47KUMIRELEASE) stable; urgency=low
 
   * check_fs_writable
