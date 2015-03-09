@@ -1,4 +1,4 @@
-nagios-plugins-kumina (2.48KUMIRELEASF) UNRELEASED; urgency=low
+nagios-plugins-kumina (2.49KUMIRELEASE) stable; urgency=low
 
   * check_fs_writable cleanup and dotfile
 
@@ -106,7 +106,6 @@ nagios-plugins-kumina (2.39KUMIRELEASE9) stable; urgency=low
   * check_elasticsearch: Make it less complex.
 
  -- Tim Stoop <tim@kumina.nl>  Tue, 16 Sep 2014 11:37:47 +0200
->>>>>>> Fix elasticsearch messages.
 
 nagios-plugins-kumina (2.39KUMIRELEASE8) stable; urgency=low
 
