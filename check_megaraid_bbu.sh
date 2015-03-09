@@ -103,7 +103,11 @@
       # Result: Yes/No
       $MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Pack is about to fail & should be replaced" | cut -d":" -f2 |  tr -d '[[:space:]]'
     ;;
+    -h|--help)
+      echo "Usage: $0 [CHECK]" 
+      exit 0
+    ;;
     *)
-      echo "Usage: $0 [check name]" 
-      exit 1
+      echo "Usage: $0 [CHECK]" 
+      exit 0
   esac
