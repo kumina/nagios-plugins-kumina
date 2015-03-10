@@ -3,8 +3,6 @@
 PROGNAME=`basename $0`
 STAMP=`date +%s`
 
-set -e
-
 if [ $# -lt 1 ]; then
 	echo "not enough args" >&2; exit 3 ;
 elif [ $# -gt 2 ]; then
@@ -29,21 +27,27 @@ while getopts ":hd:" FLAG; do
 done
 
 if [ ! -f /var/lock/$PROGNAME.lock ]; then
-	touch /var/lock/$PROGNAME.lock
+	LOCKERR=`touch /var/lock/$PROGNAME.lock 2>&1`
+	if [ $? -ne 0 ]; then
+		echo "CRITICAL - could not set lockfile: $LOCKERR"
+		exit 2;
+	fi
 	if [[ -d $DIRNAME ]] && [[ -w $DIRNAME ]]; then
-		touch $DIRNAME/.$PROGNAME-$STAMP
+		TOUCHERR=`touch $DIRNAME/.$PROGNAME-$STAMP 2>&1`
 		if [ $? -ne 0 ]; then
-			echo "CRITICAL - cannot touch"
+			rm /var/lock/$PROGNAME.lock
+			echo "CRITICAL - cannot touch: $TOUCHERR"
 			exit 2;
 		fi
-		echo "$STAMP" > $DIRNAME/.$PROGNAME-$STAMP 
+		ECHOERR=`echo "$STAMP" > $DIRNAME/.$PROGNAME-$STAMP 2>&1`
 		if [ $? -ne 0 ]; then 
-			echo "CRITICAL - cannot echo"
+			echo "CRITICAL - cannot echo: $ECHOERR"
+			rm /var/lock/$PROGNAME.lock
 			exit 2;
 		fi
-		READBACK=$(cat "$DIRNAME/.$PROGNAME-$STAMP")
+		READBACK=`cat "$DIRNAME/.$PROGNAME-$STAMP" 2>&1`
 		if [[ $READBACK -ne $STAMP ]]; then
-			echo "CRITICAL - read back value from file does not correspond with what we set!"
+			echo "CRITICAL - read back value is different: $READBACK"
 			rm /var/lock/$PROGNAME.lock
 			exit 2
 		else
