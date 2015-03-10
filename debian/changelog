@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.50KUMIRELEASE) stable; urgency=low
+
+  * better error logging for check_fs_writable
+
+ -- Liam Macgillavry <liam@kumina.nl>  Tue, 10 Mar 2015 14:56:34 +0100
+
 nagios-plugins-kumina (2.49KUMIRELEASE) stable; urgency=low
 
   * check_fs_writable cleanup and dotfile
