@@ -28,7 +28,7 @@
       # Check voltage status
       # Result: OK/??
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Voltage" | grep -v "Voltage:" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Voltage" | grep -v "Voltage:" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'OK' ]
       then
         echo "Voltage is OK"
@@ -44,7 +44,7 @@
       # Check temperature status
       # Result: OK/??
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Temperature" | grep -v "Temperature:" | grep -v "Over Temperature" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Temperature" | grep -v "Temperature:" | grep -v "Over Temperature" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'OK' ]
       then
         echo "Temperature is OK"
@@ -60,7 +60,7 @@
       # Check if learn cycle has been requested
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Learn Cycle Requested" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Learn Cycle Requested" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'No' ]
       then
         echo "No relearn cycle requested"
@@ -76,7 +76,7 @@
       # Check if learn cycle is active.
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Learn Cycle Active" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Learn Cycle Active" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'No' ]
       then
         echo "No relearn cycle active"
@@ -92,7 +92,7 @@
       # Check learn cycle status
       # Result: OK/??
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Learn Cycle Status" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Learn Cycle Status" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'OK' ]
       then
         echo "Relearn status is OK"
@@ -108,7 +108,7 @@
       # Check learn cycle timeout
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Learn Cycle Timeout" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Learn Cycle Timeout" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'No' ]
       then
         echo "No relearn cycle timeout"
@@ -124,7 +124,7 @@
       # Check for i2c errors
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "I2c Errors Detected" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "I2c Errors Detected" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'No' ]
       then
         echo "No i2c errors"
@@ -140,7 +140,7 @@
       # Check if battery pack is missing
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Battery Pack Missing" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Battery Pack Missing" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'No' ]
       then
         echo "Battery pack is present"
@@ -156,7 +156,7 @@
       # Check if battery replacement is required
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Battery Replacement required" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Battery Replacement required" | cut -d ":" -f2 | sed -e 's/^[[:space:]]*//')
       if [ $RESULT = 'No' ]
       then
         echo "Battery pack does not need replacement"
@@ -172,7 +172,7 @@
       # Check preventive failure status
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Pack is about to fail & should be replaced" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Pack is about to fail & should be replaced" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Preventive battery replacement is not advised"
@@ -188,7 +188,7 @@
       # Check remaining capacity
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Remaining Capacity Low" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Remaining Capacity Low" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Remaining capacity is OK"
@@ -204,7 +204,7 @@
       # Check unkown
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Periodic Learn Required" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Periodic Learn Required" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Periodic learn not required"
@@ -220,7 +220,7 @@
       # Check unknow
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Transparent Learn" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Transparent Learn" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Transparent learn is disabled"
@@ -236,7 +236,7 @@
       # Check unknow
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "No space to cache offload" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "No space to cache offload" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Enough space to cache offload"
@@ -252,7 +252,7 @@
       # Check unknow
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Cache Offload premium feature required" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Cache Offload premium feature required" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Cache Offload premium feature not required"
@@ -268,7 +268,7 @@
       # Check unknow
       # Result: Yes/No
 
-      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER | grep "Module microcode update required" | cut -d":" -f2 |  tr -d '[[:space:]]')
+      RESULT=$($MEGACLI -AdpBbuCmd -GetBbuStatus -a$ADAPTER -NoLog | grep "Module microcode update required" | cut -d":" -f2 |  tr -d '[[:space:]]')
       if [ $RESULT = 'No' ]
       then
         echo "Module microcode update is not required"
