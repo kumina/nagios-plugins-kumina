@@ -1,4 +1,4 @@
-nagios-plugins-kumina (2.52KUMIRELEASE) stable; urgency=low
+nagios-plugins-kumina (2.53KUMIRELEASE) stable; urgency=low
 
   * updated check_file to accept warn option and always return text
 
