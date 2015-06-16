@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.52KUMIRELEASE) stable; urgency=low
+
+  * updated check_file to accept warn option and always return text
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Tue, 16 Jun 2015 09:50:54 +0100
+
 nagios-plugins-kumina (2.51KUMIRELEASE) stable; urgency=low
 
   * added check_proc_exe to check for deleted executables
