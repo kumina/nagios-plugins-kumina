@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.54KUMIRELEASE) stable; urgency=low
+
+  * Added check_corosync_rings.pl: check the status of corosync ring(s)
+
+ -- Adrian van Dongen <adrian@kumina.nl>  Tue, 07 Jul 2015 15:13:18 +0200
+
 nagios-plugins-kumina (2.53KUMIRELEASE) stable; urgency=low
 
   * updated check_file to accept warn option and always return text
