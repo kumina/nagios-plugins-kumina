@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.55KUMIRELEASE) stable; urgency=low
+
+  * check_corosync_rings.pl add check for dev-mode 127.0.0.1 ring splitbrain
+
+ -- Liam Macgillavry <liam@kumina.nl>  Thu, 16 Jul 2015 12:06:34 +0200
+
 nagios-plugins-kumina (2.54KUMIRELEASE) stable; urgency=low
 
   * Added check_corosync_rings.pl: check the status of corosync ring(s)

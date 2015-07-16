@@ -84,6 +84,12 @@ foreach my $line (<$fh>) {
         }
         $found++;
     }
+    if ( $line =~ m/id\s*=\s*(\S.+)/ ) {
+        my $ringip = $1;
+        if ( $ringip eq "127.0.0.1" ) {
+             $np->add_message( CRITICAL, "ring mounted in dev mode on loopback. Split-brain!");
+        }
+    }
 }
 
 close($fh) or $np->nagios_exit( CRITICAL, "Running corosync-cfgtool failed" );
