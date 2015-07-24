@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.56KUMIRELEASE) stable; urgency=low
+
+  * added check_ssl_sha1_expiry.sh
+
+ -- Liam Macgillavry <liam@kumina.nl>  Fri, 24 Jul 2015 15:44:30 +0200
+
 nagios-plugins-kumina (2.55KUMIRELEASE) stable; urgency=low
 
   * check_corosync_rings.pl add check for dev-mode 127.0.0.1 ring splitbrain
