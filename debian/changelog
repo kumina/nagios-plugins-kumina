@@ -1,4 +1,4 @@
-nagios-plugins-kumina (2.56KUMIRELEASE) stable; urgency=low
+nagios-plugins-kumina (2.57KUMIRELEASE) stable; urgency=low
 
   * check_ssl_sha1_expiry.sh feature for seperate servername and IP/host
 
