@@ -3,8 +3,9 @@
 # Check SHA1 SSL certificate for expiry after Jan 1 2015
 #
 # Usage: check_ssl_cert.sh [-h host] [-p port] [-t timeout]
-#   -h, --host            Hostname
+#   -h, --host            servername
 #   -p, --port            Port, eg: 443
+#   -i  --ip		  IP address or hostname to connect to
 #   -t, --timeout         Command execution timeout, eg: 10s
 #   --help                Display this screen
 #
@@ -23,12 +24,16 @@ while [[ -n "$1" ]]; do
       port=$2
       shift
       ;;
+    -i | --ip)
+      ip=$2
+      shift
+      ;;
     -t | --timeout)
       timeout=$2
       shift
       ;;
     --help)
-      sed -n '2,12p' "$0" | tr -d '#'
+      sed -n '2,14p' "$0" | tr -d '#'
       exit 3;
       ;;
     *)
@@ -40,6 +45,7 @@ while [[ -n "$1" ]]; do
   shift
 done
 
+ip=${ip:=localhost}
 host=${host:=localhost}
 port=${port:=443}
 timeout=${timeout:=30s}
@@ -47,7 +53,7 @@ warn=${warn:=15}
 crit=${crit:=7}
 
 if timeout "$timeout" \
-  openssl s_client -servername "$host" -connect "${host}:${port}" \
+  openssl s_client -servername "$host" -connect "${ip}:${port}" \
   < /dev/null 2>&1 \
   | openssl x509 -text -in /dev/stdin \
   | grep -q 'sha1WithRSAEncryption'; then
@@ -59,7 +65,7 @@ fi
 
 expire=$(
   timeout "$timeout" \
-  openssl s_client -servername "$host" -connect "${host}:${port}" \
+  openssl s_client -servername "$host" -connect "${ip}:${port}" \
   < /dev/null 2>&1 \
   | openssl x509 -enddate -noout \
   | cut -d '=' -f2
