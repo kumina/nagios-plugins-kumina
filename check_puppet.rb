@@ -1,4 +1,4 @@
-#!/usr/bin/ruby1.8
+#!/usr/bin/ruby
 
 # A simple nagios check that should be run as root
 # perhaps under the mcollective NRPE plugin and

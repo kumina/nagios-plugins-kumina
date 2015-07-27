@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.58KUMIRELEASE) stable; urgency=low
+
+  * generalize shebang of check_puppet
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Mon, 27 Jul 2015 13:41:55 +0200
+
 nagios-plugins-kumina (2.57KUMIRELEASE) stable; urgency=low
 
   * check_ssl_sha1_expiry.sh feature for seperate servername and IP/host
