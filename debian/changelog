@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.59KUMIRELEASE) stable; urgency=low
+
+  * added pmp-check-mysql-innodb from Perc-mon-packages
+
+ -- Liam Macgillavry <liam@kumina.nl>  Thu, 15 Oct 2015 17:01:37 +0200
+
 nagios-plugins-kumina (2.58KUMIRELEASE) stable; urgency=low
 
   * generalize shebang of check_puppet
