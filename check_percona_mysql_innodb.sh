@@ -234,7 +234,7 @@ get_waiter_count() {
 # from another file.
 # ########################################################################
 is_not_sourced() {
-   [ "${0##*/}" = "pmp-check-mysql-innodb" ] || [ "${0##*/}" = "bash" -a "$_" = "$0" ]
+   [ "${0##*/}" = "check_percona_mysql_innodb" ] || [ "${0##*/}" = "bash" -a "$_" = "$0" ]
 }
 
 # ########################################################################
@@ -262,11 +262,11 @@ fi
 
 =head1 NAME
 
-pmp-check-mysql-innodb - Alert on problems inside InnoDB.
+check_percona_mysql_innodb - Alert on problems inside InnoDB.
 
 =head1 SYNOPSIS
 
-  Usage: pmp-check-mysql-innodb [OPTIONS]
+  Usage: check_percona_mysql_innodb [OPTIONS]
   Options:
     -C CHECK        What to alert on; default idle_blocker_duration.
                     Other options: waiter_count, max_duration.
@@ -358,7 +358,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA.
 
 =head1 VERSION
 
-Percona Monitoring Plugins pmp-check-mysql-innodb 1.1.5
+Percona Monitoring Plugins check_percona_mysql_innodb 1.1.5
 
 =cut
 
