@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.59KUMIRELEASE+1) stable; urgency=low
+
+  * Rename pmp-check-mysql-innodb to better fit with the rest.
+
+ -- Tim Stoop <tim@kumina.nl>  Fri, 16 Oct 2015 12:00:33 +0200
+
 nagios-plugins-kumina (2.59KUMIRELEASE) stable; urgency=low
 
   * added pmp-check-mysql-innodb from Perc-mon-packages
