@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.60KUMIRELEASE) stable; urgency=low
+
+  * Let haproxy_servers check warn on nocheck backends,
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Thu, 22 Oct 2015 14:02:26 +0200
+
 nagios-plugins-kumina (2.59KUMIRELEASE+2) stable; urgency=low
 
   * Also do the rename in the script itself. (Ouch!)

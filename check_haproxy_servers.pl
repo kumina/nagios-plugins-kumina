@@ -137,11 +137,12 @@ if ( $stats ne "") {
 				if ( $stats{$pxname}{$svname}{'status'} eq 'UP' ) {
 					logD( sprintf(_gt("%s '%s' is up on '%s' proxy."),$activeDescr,$svname,$pxname) );
 				} elsif ( $stats{$pxname}{$svname}{'status'} eq 'DOWN' ) {
-						push @criticals, sprintf(_gt("%s '%s' is DOWN on '%s' proxy !"),$activeDescr,$svname,$pxname);
+						push @criticals, sprintf(_gt("%s '%s' is DOWN on '%s' proxy!"),$activeDescr,$svname,$pxname);
 				} elsif ( $stats{$pxname}{$svname}{'status'} eq 'NOLB' ) {
-					push @warnings, sprintf(_gt("%s '%s' is NOLB on '%s' proxy !"), $activeDescr,$svname,$pxname);
+					push @warnings, sprintf(_gt("%s '%s' is NOLB on '%s' proxy!"), $activeDescr,$svname,$pxname);
 				} elsif ( $stats{$pxname}{$svname}{'status'} eq 'no check' ) {
 					$stats2{$pxname}{'nocheck'}++;
+					push @warnings, sprintf(_gt("%s '%s' is NOCHECK on '%s' proxy!"), $activeDescr,$svname,$pxname);
 				}
 				if ( $stats{$pxname}{$svname}{'act'} eq '1' ) {
 					$stats2{$pxname}{'acttot'}++;
@@ -224,5 +225,7 @@ Stéphane Urbanovski <stephane.urbanovski@ac-nancy-metz.fr>
 David BERARD <david@nfrance.com>
 
 Liam Macgillavry <liam@kumina.nl>
+
+Rutger Spiertz <rutger@kumina.nl>
 
 =cut
