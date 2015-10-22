@@ -1,4 +1,4 @@
-nagios-plugins-kumina (2.60KUMIRELEASa+1E) stable; urgency=low
+nagios-plugins-kumina (2.60KUMIRELEASE+1) stable; urgency=low
 
   * Don't warn on no check on backup servers in haproxy_servers check.
 
