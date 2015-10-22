@@ -140,7 +140,7 @@ if ( $stats ne "") {
 						push @criticals, sprintf(_gt("%s '%s' is DOWN on '%s' proxy!"),$activeDescr,$svname,$pxname);
 				} elsif ( $stats{$pxname}{$svname}{'status'} eq 'NOLB' ) {
 					push @warnings, sprintf(_gt("%s '%s' is NOLB on '%s' proxy!"), $activeDescr,$svname,$pxname);
-				} elsif ( $stats{$pxname}{$svname}{'status'} eq 'no check' ) {
+				} elsif ( $stats{$pxname}{$svname}{'status'} eq 'no check' and $activeDescr eq $active ) {
 					$stats2{$pxname}{'nocheck'}++;
 					push @warnings, sprintf(_gt("%s '%s' is NOCHECK on '%s' proxy!"), $activeDescr,$svname,$pxname);
 				}

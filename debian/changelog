@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.60KUMIRELEASa+1E) stable; urgency=low
+
+  * Don't warn on no check on backup servers in haproxy_servers check.
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Thu, 22 Oct 2015 16:34:26 +0200
+
 nagios-plugins-kumina (2.60KUMIRELEASE) stable; urgency=low
 
   * Let haproxy_servers check warn on nocheck backends,
