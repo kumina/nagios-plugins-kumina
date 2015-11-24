@@ -129,7 +129,7 @@ class ThreadRBL(threading.Thread):
             #grabs host from queue
             hostname,root_name = self.queue.get()
 
-            check_host = "%s.%s" % (hostname, root_name)
+            check_host = "%s.%s." % (hostname, root_name)
             try:
                 check_addr = socket.getaddrinfo(check_host, 0, 2)
             except socket.error:

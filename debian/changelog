@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.62KUMIRELEASE1) stable; urgency=low
+
+  * Prevent check_rbl from adding search domain.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 24 Nov 2015 16:39:31 +0100
+
 nagios-plugins-kumina (2.62KUMIRELEASE0) stable; urgency=low
 
   * Add check_conntrack.sh.
