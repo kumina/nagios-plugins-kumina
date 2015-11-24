@@ -131,10 +131,10 @@ class ThreadRBL(threading.Thread):
 
             check_host = "%s.%s" % (hostname, root_name)
             try:
-                check_addr = socket.gethostbyname(check_host)
+                check_addr = socket.getaddrinfo(check_host, 0, 2)
             except socket.error:
                 check_addr = None
-            if check_addr != None and "127.0.0." in check_addr:
+            if check_addr != None and "127.0.0." in check_addr[0][4][0]:
                 on_blacklist.append(root_name)
 
             #signals to queue job is done
@@ -174,7 +174,7 @@ def main(argv, environ):
 
     if host:
         try:
-            addr = socket.gethostbyname(host)
+            addr = socket.getaddrinfo(host, 0, 2)[0][4][0]
         except:
             print "ERROR: Host '%s' not found - maybe try a FQDN?" % host
             sys.exit(status['UNKNOWN'])
