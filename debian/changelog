@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.62KUMIRELEASE0) stable; urgency=low
+
+  * Add check_conntrack.sh.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 24 Nov 2015 11:16:57 +0100
+
 nagios-plugins-kumina (2.61KUMIRELEASE) stable; urgency=low
 
   * Make check_rbl use getaddrinfo instead of gethostname.
