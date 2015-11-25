@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.63KUMIRELEASE0) stable; urgency=low
+
+  * Add check_fscache.sh.
+
+ -- Tim Stoop <tim@kumina.nl>  Wed, 25 Nov 2015 10:36:53 +0100
+
 nagios-plugins-kumina (2.62KUMIRELEASE1) stable; urgency=low
 
   * Prevent check_rbl from adding search domain.
