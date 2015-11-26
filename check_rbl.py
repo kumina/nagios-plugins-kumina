@@ -27,7 +27,7 @@ if rv >= sys.version_info:
     print "ERROR: Requires Python 2.6 or greater"
     sys.exit(3)
 
-import Queue, threading
+import Queue, threading, ipaddr
 
 serverlist = [
 "0spam.fusionzero.com",
@@ -144,16 +144,58 @@ def usage(argv0):
     print "%s -w <WARN level> -c <CRIT level> -h <hostname>" % argv0
     print " or"
     print "%s -w <WARN level> -c <CRIT level> -a <ipv4 address>" % argv0
+    print " or (to check all local IP addresses)"
+    print "%s -w <WARN level> -c <CRIT level> " % argv0
+
+def is_internal(ip):
+    x = ipaddr.IPAddress(ip)
+    return (x.is_private or x.is_loopback or x.is_link_local or
+      x.is_multicast or x.is_reserved or x.is_unspecified)
+
+def check_address(addr, warn_limit, crit_limit):
+    on_blacklist = []
+
+    if is_internal(addr):
+        return False, False
+
+    addr_parts = string.split(addr, '.')
+    addr_parts.reverse()
+    check_name = string.join(addr_parts, '.')
+
+    ###### Thread stuff:
+
+    #spawn a pool of threads, and pass them queue instance 
+    for i in range(10):
+        t = ThreadRBL(queue)
+        t.setDaemon(True)
+        t.start()
+
+    #populate queue with data
+    for blhost in serverlist:
+        queue.put((check_name,blhost))
+
+    #wait on the queue until everything has been processed
+    queue.join()
+
+    ###### End Thread stuff
+
+    warn=False
+    if len(on_blacklist) >= warn_limit :
+        warn = True
+
+    crit=False
+    if len(on_blacklist) >= crit_limit:
+        crit = True
+
+    return warn, crit
 
 def main(argv, environ):
     options, remainder = getopt.getopt(argv[1:], "w:c:h:a:", ["warn=","crit=","host=","address="])
     status = { 'OK' : 0 , 'WARNING' : 1, 'CRITICAL' : 2 , 'UNKNOWN' : 3}
+    warn_limit = None
+    crit_limit = None
     host = None
     addr = None
-
-    if 3 != len(options):
-        usage (argv[0])
-        sys.exit(status['UNKNOWN'])
 
     for field, val in options:
         if field in ('-w','--warn'):
@@ -168,46 +210,32 @@ def main(argv, environ):
             usage (argv[0])
             sys.exit(status['UNKNOWN'])
 
+    if warn_limit == None or crit_limit == None:
+        print "Missing options for crit or warn."
+        usage(argv[0])
+        sys.exit(status['UNKNOWN'])
+
     if host and addr:
         print "ERROR: Cannot use both host and address, choose one."
         sys.exit(status['UNKNOWN'])
 
+    # We can only check IP addresses, so convert hostname to address
     if host:
         try:
             addr = socket.getaddrinfo(host, 0, 2)[0][4][0]
         except:
             print "ERROR: Host '%s' not found - maybe try a FQDN?" % host
             sys.exit(status['UNKNOWN'])
-    addr_parts = string.split(addr, '.')
-    addr_parts.reverse()
-    check_name = string.join(addr_parts, '.')
-    # We set this to make sure the output is nice. It's not used except for the output after this point.
-    host = addr
 
-###### Thread stuff:
+    # If we do not have an address by this time, we want to check all local
+    # addresses instead (so we have a lot more to do).
+    if addr:
+        warn, crit = check_address(addr, warn_limit, crit_limit)
+        host = addr # This makes output look nicer
+    else:
+        # Get all the ipadresses
+        pass
 
-    #spawn a pool of threads, and pass them queue instance 
-    for i in range(10):
-        t = ThreadRBL(queue)
-        t.setDaemon(True)
-        t.start() 
-   
-    #populate queue with data
-    for blhost in serverlist:
-        queue.put((check_name,blhost))
-
-    #wait on the queue until everything has been processed
-    queue.join()
-
-###### End Thread stuff
-    
-    warn=False
-    if len(on_blacklist) >= warn_limit :
-        warn = True
-
-    crit=False
-    if len(on_blacklist) >= crit_limit:
-        crit = True
     if warn == True:
         if crit == True:
             print 'CRITICAL: %s on %s spam blacklists|%s' % (host,len(on_blacklist),on_blacklist)
