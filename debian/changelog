@@ -1,8 +1,26 @@
+nagios-plugins-kumina (2.64KUMIRELEASE2) stable; urgency=low
+
+  * Fix check_rbl to deal with interfaces without AF_INET.
+
+ -- Tim Stoop <tim@kumina.nl>  Thu, 26 Nov 2015 22:43:02 +0100
+
+nagios-plugins-kumina (2.64KUMIRELEASE1) stable; urgency=low
+
+  * Make sure variables are set in check_rbl.
+
+ -- Tim Stoop <tim@kumina.nl>  Thu, 26 Nov 2015 20:24:18 +0100
+
+nagios-plugins-kumina (2.64KUMIRELEASE0) stable; urgency=low
+
+  * Change check_rbl to check all public IPs on the local interfaces.
+
+ -- Tim Stoop <tim@kumina.nl>  Thu, 26 Nov 2015 15:31:04 +0100
+
 nagios-plugins-kumina (2.63KUMIRELEASE1) UNRELEASED; urgency=low
 
   * The check_fscache.sh was not needed at all.
 
- -- Tim Stoop <tim@kumina.nl>  Wed, 25 Nov 2015 13:29:05 +0100
+ -- Tim Stoop <tim@kumina.nl>  Thu, 26 Nov 2015 15:30:42 +0100
 
 nagios-plugins-kumina (2.63KUMIRELEASE0) stable; urgency=low
 

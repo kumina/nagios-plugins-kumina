@@ -230,11 +230,39 @@ def main(argv, environ):
     # If we do not have an address by this time, we want to check all local
     # addresses instead (so we have a lot more to do).
     if addr:
-        warn, crit = check_address(addr, warn_limit, crit_limit)
-        host = addr # This makes output look nicer
+        if is_internal(addr):
+            host = '(No external addresses on server)'
+            warn, crit = False, False
+        else:
+            warn, crit = check_address(addr, warn_limit, crit_limit)
+            host = addr # This makes output look nicer
     else:
+        from netifaces import interfaces, ifaddresses, AF_INET
+        checked = []
+        warn, crit = False, False
+
         # Get all the ipadresses
-        pass
+        # thanks: http://stackoverflow.com/a/274644/1357013
+        for interface in interfaces():
+            # Ignore lo
+            if interface == 'lo':
+                continue
+            if AF_INET not in ifaddresses(interface).keys():
+                continue
+            for link in ifaddresses(interface)[AF_INET]:
+                if is_internal(link['addr']):
+                    continue
+                checked.append(link['addr'])
+                warn, crit = check_address(link['addr'], warn_limit, crit_limit)
+                if warn or crit:
+                    host = link['addr']
+                    break
+            # Since python cannot break out of two loops, we work around it like
+            # this. Not very nice, but it works.
+            if warn or crit:
+                break
+            else:
+                host = ', '.join(checked)
 
     if warn == True:
         if crit == True:
