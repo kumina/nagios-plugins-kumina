@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.65KUMIRELEASE1) stable; urgency=low
+
+  * Add check for Icinga2 config.
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Tue, 01 Dec 2015 12:47:00 +0100
+
 nagios-plugins-kumina (2.64KUMIRELEASE2) stable; urgency=low
 
   * Fix check_rbl to deal with interfaces without AF_INET.
