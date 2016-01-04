@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROGNAME=`basename $0`
-STAMP=`date +%s`
+STAMP=`date +%s%N`
 
 if [ $# -lt 1 ]; then
 	echo "not enough args" >&2; exit 3 ;
@@ -26,43 +26,27 @@ while getopts ":hd:" FLAG; do
 	esac
 done
 
-if [ ! -f /var/lock/$PROGNAME.lock ]; then
-	LOCKERR=`touch /var/lock/$PROGNAME.lock 2>&1`
+if [[ -d $DIRNAME ]] && [[ -w $DIRNAME ]]; then
+	TOUCHERR=`touch $DIRNAME/.$PROGNAME-$STAMP 2>&1`
 	if [ $? -ne 0 ]; then
-		echo "CRITICAL - could not set lockfile: $LOCKERR"
+		echo "CRITICAL - cannot touch: $TOUCHERR"
 		exit 2;
 	fi
-	if [[ -d $DIRNAME ]] && [[ -w $DIRNAME ]]; then
-		TOUCHERR=`touch $DIRNAME/.$PROGNAME-$STAMP 2>&1`
-		if [ $? -ne 0 ]; then
-			rm /var/lock/$PROGNAME.lock
-			echo "CRITICAL - cannot touch: $TOUCHERR"
-			exit 2;
-		fi
-		ECHOERR=`echo "$STAMP" > $DIRNAME/.$PROGNAME-$STAMP 2>&1`
-		if [ $? -ne 0 ]; then 
-			echo "CRITICAL - cannot echo: $ECHOERR"
-			rm /var/lock/$PROGNAME.lock
-			exit 2;
-		fi
-		READBACK=`cat "$DIRNAME/.$PROGNAME-$STAMP" 2>&1`
-		if [[ $READBACK -ne $STAMP ]]; then
-			echo "CRITICAL - read back value is different: $READBACK"
-			rm /var/lock/$PROGNAME.lock
-			exit 2
-		else
-			echo "OK - set and read back file on $DIRNAME correctly"
-			rm $DIRNAME/.$PROGNAME-$STAMP
-			rm /var/lock/$PROGNAME.lock
-			exit 0
-		fi
-	else
-		echo "CRITICAL - $DIRNAME is not a directory or not writable"
-		rm /var/lock/$PROGNAME.lock
-		exit 2
+	ECHOERR=`echo "$STAMP" > $DIRNAME/.$PROGNAME-$STAMP 2>&1`
+	if [ $? -ne 0 ]; then 
+		echo "CRITICAL - cannot echo: $ECHOERR"
+		exit 2;
 	fi
-	rm /var/lock/$PROGNAME.lock
+	READBACK=`cat "$DIRNAME/.$PROGNAME-$STAMP" 2>&1`
+	if [[ $READBACK -ne $STAMP ]]; then
+		echo "CRITICAL - read back value is different: $READBACK"
+		exit 2
+	else
+		echo "OK - set and read back file on $DIRNAME correctly"
+		rm $DIRNAME/.$PROGNAME-$STAMP
+		exit 0
+	fi
 else
-	echo "CRITICAL - lock file /var/lock/$PROGNAME.lock is still set; this is bad juju"
+	echo "CRITICAL - $DIRNAME is not a directory or not writable"
 	exit 2
 fi

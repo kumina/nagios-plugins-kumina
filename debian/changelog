@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.65KUMIRELEASE2) stable; urgency=low
+
+  * Remove lockfile from check_fs_writable as it prevents multiple monitoring systems from performing the check simultaneously.
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Mon, 01 Jan 2015 10:47:00 +0100
+
 nagios-plugins-kumina (2.65KUMIRELEASE1) stable; urgency=low
 
   * Add check for Icinga2 config.
