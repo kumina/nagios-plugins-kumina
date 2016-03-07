@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.65KUMIRELEASE3) stable; urgency=low
+
+  * Ensure check_pacemaker_standby also works on Jessie.
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Mon, 07 Mar 2015 13:19:00 +0100
+
 nagios-plugins-kumina (2.65KUMIRELEASE2) stable; urgency=low
 
   * Remove lockfile from check_fs_writable as it prevents multiple monitoring systems from performing the check simultaneously.
