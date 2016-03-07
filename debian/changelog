@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.65KUMIRELEASE4) stable; urgency=low
+
+  * Ensure check_rabbitmq_server also works on Jessie.
+
+ -- Rutger Spiertz <rutger@kumina.nl>  Mon, 07 Mar 2015 14:09:00 +0100
+
 nagios-plugins-kumina (2.65KUMIRELEASE3) stable; urgency=low
 
   * Ensure check_pacemaker_standby also works on Jessie.
