@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.66KUMIRELEASE1) stable; urgency=low
+
+  * Add check_package.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 14 Mar 2016 10:59:50 +0100
+
 nagios-plugins-kumina (2.65KUMIRELEASE4) stable; urgency=low
 
   * Ensure check_rabbitmq_server also works on Jessie.
