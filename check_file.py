@@ -7,8 +7,8 @@ REQUIREMENTS
 This script requires python-argparse and is meant to be run on *nix-systems.
 
 COPYRIGHT
-Copyright 2011 - Kumina B.V./Rutger Spiertz (rutger@kumina.nl), this script is
-licensed under the GNU GPL version 3 or higher.
+Copyright 2011-2016 - Kumina B.V./Rutger Spiertz (rutger@kumina.nl), this script
+is licensed under the GNU GPL version 3 or higher.
 """
 
 # Import the classes needed
@@ -81,16 +81,18 @@ else:
     else:
         addToMsg("%s doesn't exist." % args.filename)
         quit(exit_crit)
-fileContent = f.readline().strip()
-f.close
+
+if args.content != None:
+    fileContent = f.readline().strip()
+    f.close
 
 if args.negate:
     addToMsg('%s' % fileContent or '%s exists' % args.filename)
     quit(exit_crit)
-elif fileContent == args.content:
-    addToMsg('content is "%s".' % fileContent)
-    quit(exit_ok)
-else:
+elif args.content != None and fileContent != args.content:
     addToMsg('the content of %s doesn\'t equal "%s".' % (args.filename,
                                                          args.content))
     quit(exit_crit)
+else:
+    addToMsg('File is on disk with content as expected (if checked).')
+    quit(exit_ok)
