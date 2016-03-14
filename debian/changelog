@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.66KUMIRELEASE3) stable; urgency=low
+
+  * Fix filecontent situation.
+
+ -- Tim Stoop <tim@kumina.nl>  Mon, 14 Mar 2016 15:02:44 +0100
+
 nagios-plugins-kumina (2.66KUMIRELEASE2) stable; urgency=low
 
   * check_file: Allow checking existence only.

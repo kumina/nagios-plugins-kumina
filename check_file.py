@@ -82,6 +82,7 @@ else:
         addToMsg("%s doesn't exist." % args.filename)
         quit(exit_crit)
 
+fileContent = ''
 if args.content != None:
     fileContent = f.readline().strip()
     f.close
