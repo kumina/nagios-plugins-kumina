@@ -74,6 +74,8 @@ if path.isfile(args.filename):
     except:
         addToMsg("%s can't be read." % args.filename)
         quit(exit_crit)
+    fileContent = f.readline().strip()
+    f.close()
 else:
     if args.negate:
         addToMsg("%s doesn't exist." % args.filename)
@@ -82,18 +84,16 @@ else:
         addToMsg("%s doesn't exist." % args.filename)
         quit(exit_crit)
 
-fileContent = ''
-if args.content != None:
-    fileContent = f.readline().strip()
-    f.close
-
 if args.negate:
-    addToMsg('%s' % fileContent or '%s exists' % args.filename)
+    addToMsg('%s' % fileContent)
     quit(exit_crit)
 elif args.content != None and fileContent != args.content:
     addToMsg('the content of %s doesn\'t equal "%s".' % (args.filename,
                                                          args.content))
     quit(exit_crit)
+elif args.content != None and fileContent == args.content:
+    addToMsg('File is on disk and content is as expected.')
+    quit(exit_ok)
 else:
-    addToMsg('File is on disk with content as expected (if checked).')
+    addToMsg('File is on disk.')
     quit(exit_ok)

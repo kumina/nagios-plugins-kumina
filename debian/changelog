@@ -1,3 +1,9 @@
+nagios-plugins-kumina (2.66KUMIRELEASE4) stable; urgency=low
+
+  * More fixes to filecontent situation.
+
+ -- Tim Stoop <tim@kumina.nl>  Tue, 22 Mar 2016 14:59:45 +0100
+
 nagios-plugins-kumina (2.66KUMIRELEASE3) stable; urgency=low
 
   * Fix filecontent situation.
