@@ -49,8 +49,8 @@ if ( $opt_h ) {
 	exit;
 }
 
-my $megaclibin = '/usr/sbin/megacli';  # the full path to your MegaCli binary
-my $megacli = "$megaclibin";           # how we actually call MegaCli
+my $megaclibin = '/usr/sbin/MegaCli';  # the full path to your MegaCli binary
+my $megacli = "sudo $megaclibin";      # how we actually call MegaCli
 my $megapostopt = '-NoLog';            # additional options to call at the end of MegaCli arguments
 
 my ($adapters);
@@ -122,26 +122,26 @@ close ADPCOUNT;
 
 ADAPTER: for ( my $adp = 0; $adp < $adapters; $adp++ ) {
 	# Get the number of logical drives on this adapter
-	open (LDGETNUM, "$megacli -LdGetNum -a$adp $megapostopt |") 
-		|| exitreport('UNKNOWN', "error: Could not execute $megacli -LdGetNum -a$adp $megapostopt");
+	open (LDGETNUM, "$megacli -LDInfo -Lall -a$adp $megapostopt |") 
+		|| exitreport('UNKNOWN', "error: Could not execute $megacli -LDInfo -Lall -a$adp $megapostopt");
 	
-	my ($ldnum);
+        my @ldlist;
+
 	while (<LDGETNUM>) {
-		if ( m/Number of Virtual drives configured on adapter \d:\s*(\d+)/i ) {
-			$ldnum = $1;
-			last;
+                if ( m/^Virtual Drive:\s+(\d+)/i ) {
+                        push (@ldlist, $1);
 		}
 	}
 	close LDGETNUM;
 	
-	LDISK: for ( my $ld = 0; $ld < $ldnum; $ld++ ) {
+	LDISK: foreach my $ld (@ldlist) {
 		# Get info on this particular logical drive
 		open (LDINFO, "$megacli -LdInfo -L$ld -a$adp $megapostopt |") 
 			|| exitreport('UNKNOWN', "error: Could not execute $megacli -LdInfo -L$ld -a$adp $megapostopt ");
 			
 		my ($size, $unit, $raidlevel, $ldpdcount, $state, $spandepth);
 		while (<LDINFO>) {
-			if ( m/Size\s*:\s*((\d+\.?\d*)\s*(MB|GB|TB))/ ) {
+			if ( m/^Size\s*:\s*((\d+\.?\d*)\s*(MB|GB|TB))/ ) {
 				$size = $2;
 				$unit = $3;
 				# Adjust MB to GB if that's what we got
